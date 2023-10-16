@@ -1,6 +1,44 @@
-import Facebook from "./assets/icon-facebook.svg";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const calculateTimeLeft = () => {
+    const difference = +new Date("2023-10-25") - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [time, setTime] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTime(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+
+  function addLeadingZeros(value, length) {
+    let result = "" + value;
+    while (result.length < length) {
+      result = "0" + result;
+    }
+    return result;
+  }
+
+  const formatTime = (value) => {
+    return addLeadingZeros(value, 2);
+  };
+
   return (
     <div className="h-screen w-full bg-star custom-color flex flex-col">
       <div className="flex flex-col gap-[54px] px-6 w-full h-full items-center pt-[142px]  ">
@@ -11,8 +49,8 @@ function App() {
           {/* Days */}
           <div className="flex-1 flex flex-col gap-[9px]">
             <div className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center  shadow-lg ">
-              <span className="text-[#Fb5E84] md:text-[80px] text-[36px] font-bold leading-[71px] tracking-[-1.08px] ">
-                08
+              <span className="text-[#Fb5E84]  md:text-[80px] text-[36px] font-bold leading-[71px] tracking-[-1.08px] ">
+                {formatTime(time.days)}
               </span>
             </div>
             <h3 className="text-center text-[#8385a9] text-[7px] tracking-[2.959px] leading-normal font-bold uppercase ">
@@ -24,7 +62,7 @@ function App() {
           <div className="flex-1 flex flex-col gap-[9px]">
             <div className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center shadow-lg ">
               <span className="text-[#Fb5E84] md:text-[80px] text-[36px] font-bold leading-[71px] tracking-[-1.08px] ">
-                23
+                {formatTime(time.hours)}
               </span>
             </div>
             <h3 className="text-center text-[#8385a9] text-[7px] tracking-[2.959px] leading-normal font-bold uppercase ">
@@ -34,8 +72,8 @@ function App() {
           {/* Minutes */}
           <div className="flex-1 flex flex-col gap-[9px]">
             <div className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center  shadow-lg ">
-              <span className="text-[#Fb5E84] text-[36px] md:text-[80px] md:text-[80px] font-bold leading-[71px] tracking-[-1.08px] ">
-                55
+              <span className="text-[#Fb5E84] text-[36px] md:text-[80px]  font-bold leading-[71px] tracking-[-1.08px] ">
+                {formatTime(time.minutes)}
               </span>
             </div>
             <h3 className="text-center text-[#8385a9] text-[7px] tracking-[2.959px] leading-normal font-bold uppercase ">
@@ -46,7 +84,7 @@ function App() {
           <div className="flex-1 flex flex-col gap-[9px]">
             <div className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center  shadow-lg ">
               <span className="text-[#Fb5E84] text-[36px] font-bold md:text-[80px] leading-[71px] tracking-[-1.08px] ">
-                41
+                {formatTime(time.seconds)}
               </span>
             </div>
             <h3 className="text-center text-[#8385a9] text-[7px]  tracking-[2.959px] leading-normal font-bold uppercase ">
