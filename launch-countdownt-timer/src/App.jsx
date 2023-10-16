@@ -80,14 +80,36 @@ function App() {
               Minutes
             </h3>
           </div>
-          {/* Seconds */}
-          <div className="flex-1 flex flex-col gap-[9px]">
-            <div className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center  shadow-lg ">
-              <span className="text-[#Fb5E84] text-[36px] font-bold md:text-[80px] leading-[71px] tracking-[-1.08px] ">
-                {formatTime(time.seconds)}
-              </span>
+
+          <div className="flex-1 relative overflow-hidden flex flex-col gap-[9px]">
+            <div
+              className="w-full h-[71px] md:h-[150px] bg-[#343650] rounded flex items-center justify-center shadow-lg relative"
+              style={{ perspective: "1000px" }}
+            >
+              <div
+                className="w-full h-full absolute top-0 left-0 transition-transform duration-1000 flex items-center justify-center"
+                style={{
+                  transform: `rotateX(${time.seconds === 0 ? 90 : 0}deg)`,
+                  transformOrigin: "bottom",
+                }}
+              >
+                <span className="text-[#Fb5E84] text-[36px] md:text-[80px] font-bold leading-[71px] tracking-[-1.08px]">
+                  {formatTime(time.seconds)}
+                </span>
+              </div>
+              <div
+                className="w-full h-full absolute top-0 left-0 transition-transform duration-1000 flex items-center justify-center"
+                style={{
+                  transform: `rotateX(${time.seconds === 0 ? 0 : -90}deg)`,
+                  transformOrigin: "top",
+                }}
+              >
+                <span className="text-[#Fb5E84] text-[36px] md:text-[80px] font-bold leading-[71px] tracking-[-1.08px]">
+                  {formatTime(time.seconds - 1 < 0 ? 59 : time.seconds - 1)}
+                </span>
+              </div>
             </div>
-            <h3 className="text-center text-[#8385a9] text-[7px]  tracking-[2.959px] leading-normal font-bold uppercase ">
+            <h3 className="text-center text-[#8385a9] text-[7px] tracking-[2.959px] leading-normal font-bold uppercase">
               Seconds
             </h3>
           </div>

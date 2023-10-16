@@ -8,3 +8,12 @@
     background-size: cover, cover;
     background-position: center, center;
 }
+
+.transition-seconds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 0.5s ease;
+  }
+  
