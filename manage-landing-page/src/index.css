@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .heading-1 {
+    @apply text-[40px] text-[#242d52] font-bold leading-[50px] tracking-[-1px];
+  }
+}
+
+@layer components {
+  .text-custom {
+    color: #242d52;    
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    opacity: 0.5025;
+  }
+}
