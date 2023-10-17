@@ -4,7 +4,7 @@ import HeaderImage from "../../assets/illustration-intro.svg";
 import Button from "../Button";
 function Header() {
   return (
-    <div className="w-full bg-header bg-[right_-5rem_top_-3rem]  bg-no-repeat px-6 pt-11 flex flex-col gap-12 overflow-hidden ">
+    <div className="w-full bg-header bg-[right_-5rem_top_-3rem] bg-contain  bg-no-repeat px-6 pt-11 flex flex-col gap-12 overflow-hidden ">
       <Navbar />
 
       <div className="flex flex-col w-full md:flex-row md:items-center md:justify-between md:container md:mx-auto">

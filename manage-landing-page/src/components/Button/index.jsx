@@ -10,6 +10,7 @@ function index({ children, className, ...props }) {
     "rounded-[39px]",
     "text-[13px]",
     'font-bold',
+    'hover:opacity-50',
     
     className
   );
