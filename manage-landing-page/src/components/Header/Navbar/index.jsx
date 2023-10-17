@@ -1,6 +1,7 @@
-import React, { useState , useRef , useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../../assets/logo.svg";
 import Burger from "../../../assets/icon-hamburger.svg";
+import Close from "../../../assets/icon-close.svg";
 import Button from "../../Button";
 
 function Navbar() {
@@ -19,9 +20,8 @@ function Navbar() {
     };
   }, [navbarRef]);
 
-
   return (
-    <div className="flex justify-between items-center md:container md:mx-auto relative ">
+    <div className="flex justify-between items-center md:container md:mx-auto relative  ">
       {/* Logo */}
       <div className="shrink-0">
         <a href="#">
@@ -70,15 +70,20 @@ function Navbar() {
       {/* For Mobile basket */}
       <div className="md:hidden">
         <button onClick={() => setIsActive(!isActive)}>
-          <img src={Burger} alt="hamburger menu icon" />
+          {isActive === true ? (
+            <img src={Close} alt="close icon"></img>
+          ) : (
+            <img src={Burger} alt="burger icon"></img>
+          )}
         </button>
       </div>
 
       {/* Mobile navbar */}
 
-      <nav ref={navbarRef} 
+      <nav
+        ref={navbarRef}
         className={`absolute  top-10 transition-all duration-500 z-10 ${
-          isActive ? "right-0" : "-right-96"
+          isActive ? "right-0" : "-right-[900px]"
         }`}
       >
         <ul className="flex flex-col  gap-6 bg-white w-[325px] sm:w-[325px] rounded py-10">
