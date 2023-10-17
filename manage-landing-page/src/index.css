@@ -18,3 +18,26 @@
     opacity: 0.5025;
   }
 }
+
+
+@layer utilities {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0.33%, rgba(0, 0, 0, 0.60) 99.79%);
+    pointer-events: none; 
+
+  }
+
+
+  
+}
+
+
+
+
+
+

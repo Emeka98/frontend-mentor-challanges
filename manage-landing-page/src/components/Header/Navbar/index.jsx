@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState , useRef , useEffect } from "react";
 import Logo from "../../../assets/logo.svg";
 import Burger from "../../../assets/icon-hamburger.svg";
 import Button from "../../Button";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
+  const navbarRef = useRef(null);
 
-  console.log(isActive);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navbarRef]);
+
+
   return (
     <div className="flex justify-between items-center md:container md:mx-auto relative ">
       {/* Logo */}
@@ -63,7 +76,11 @@ function Navbar() {
 
       {/* Mobile navbar */}
 
-      <nav className={`absolute  top-10 transition-all duration-500 ${isActive ? "right-0" : "-right-96"}`}>
+      <nav ref={navbarRef} 
+        className={`absolute  top-10 transition-all duration-500 z-10 ${
+          isActive ? "right-0" : "-right-96"
+        }`}
+      >
         <ul className="flex flex-col  gap-6 bg-white w-[325px] sm:w-[325px] rounded py-10">
           <li className="w-full text-center">
             <a
@@ -107,6 +124,15 @@ function Navbar() {
           </li>
         </ul>
       </nav>
+
+      {/* Overlay */}
+      {isActive && (
+        <div
+          className={`overlay transition-opacity duration-500 ${
+            isActive ? "overlay-active" : ""
+          }`}
+        ></div>
+      )}
     </div>
   );
 }
