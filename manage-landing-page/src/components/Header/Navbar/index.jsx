@@ -1,22 +1,114 @@
-import React from 'react'
-import Logo from '../../../assets/logo.svg'
-import Burger from '../../../assets/icon-hamburger.svg'
+import React, { useState } from "react";
+import Logo from "../../../assets/logo.svg";
+import Burger from "../../../assets/icon-hamburger.svg";
+import Button from "../../Button";
 
 function Navbar() {
-  return (
-    <div className='flex justify-between'>
-        <div>
-            <a href="#">
-                <img src={Logo} alt="logo" />
-            </a>
-        </div>
+  const [isActive, setIsActive] = useState(false);
 
-        <div>
-            <button><img src={Burger} alt="hamburger menu icon" /></button>
-        </div>
-      
+  console.log(isActive);
+  return (
+    <div className="flex justify-between items-center md:container md:mx-auto relative ">
+      {/* Logo */}
+      <div className="shrink-0">
+        <a href="#">
+          <img src={Logo} alt="logo" />
+        </a>
+      </div>
+
+      {/* desktop navbar */}
+      <nav className="hidden md:flex gap-8 items-center">
+        <a
+          className="text-[#242d52] text-[13px] font-medium leading-normal hover:opacity-50"
+          href="#"
+        >
+          Pricing
+        </a>
+        <a
+          className="text-[#242d52] text-[13px] font-medium leading-normal hover:opacity-50"
+          href="#"
+        >
+          Product
+        </a>
+        <a
+          className="text-[#242d52] text-[13px] font-medium leading-normal hover:opacity-50"
+          href="#"
+        >
+          About Us
+        </a>
+        <a
+          className="text-[#242d52] text-[13px] font-medium leading-normal hover:opacity-50"
+          href="#"
+        >
+          Careers
+        </a>
+        <a
+          className="text-[#242d52] text-[13px] font-medium leading-normal hover:opacity-50"
+          href="#"
+        >
+          Community
+        </a>
+      </nav>
+
+      <Button className="w-[137px] bg-[#F98F75] text-[#FCF6F5] hidden md:inline-flex">
+        Get Started
+      </Button>
+
+      {/* For Mobile basket */}
+      <div className="md:hidden">
+        <button onClick={() => setIsActive(!isActive)}>
+          <img src={Burger} alt="hamburger menu icon" />
+        </button>
+      </div>
+
+      {/* Mobile navbar */}
+
+      <nav className={`absolute  top-10 transition-all duration-500 ${isActive ? "right-0" : "-right-96"}`}>
+        <ul className="flex flex-col  gap-6 bg-white w-[325px] sm:w-[325px] rounded py-10">
+          <li className="w-full text-center">
+            <a
+              className="text-base tracking-[-0.286px] leading-normal font-bold text-[#242d52]"
+              href="#"
+            >
+              Pricing
+            </a>
+          </li>
+          <li className="w-full text-center">
+            <a
+              className="text-base tracking-[-0.286px] leading-normal font-bold text-[#242d52]"
+              href="#"
+            >
+              Product
+            </a>
+          </li>
+          <li className="w-full text-center">
+            <a
+              className="text-base tracking-[-0.286px] leading-normal font-bold text-[#242d52]"
+              href="#"
+            >
+              About Us
+            </a>
+          </li>
+          <li className="w-full text-center">
+            <a
+              className="text-base tracking-[-0.286px] leading-normal font-bold text-[#242d52]"
+              href="#"
+            >
+              Careers
+            </a>
+          </li>
+          <li className="w-full text-center">
+            <a
+              className="text-base tracking-[-0.286px] leading-normal font-bold text-[#242d52]"
+              href="#"
+            >
+              Community
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
