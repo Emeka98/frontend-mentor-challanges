@@ -38,16 +38,17 @@ const cardsInfo = [
 
 function Cards() {
   return (
-  <div className="px-6 flex flex-col gap-16 mt-16">
-    <h3 className="heading-2 text-center">What they've said</h3>
-    <div className="flex overflow-x-auto flex-nowrap ">
-    {cardsInfo.map((card) => (
-      <Card key={card.id} card={card} />
-    ))}
-
+    <div className="px-6 flex flex-col gap-16 mt-16 w-full   ">
+      <h3 className="heading-2 text-center">What they've said</h3>
+      <div className="overflow-x-auto">
+        <div className="flex flex-row gap-[30px] w-[1200px]">
+          {cardsInfo.map((card) => (
+            <Card key={card.id} card={card} />
+          ))}
+        </div>
+      </div>
     </div>
- 
-  </div>)
+  );
 }
 
 export default Cards;
