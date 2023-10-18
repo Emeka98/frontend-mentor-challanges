@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "../../Button";
 import Card from "./Card";
 import AvatarAli from "../../../assets/avatar-ali.png";
 import AvatarAnisha from "../../../assets/avatar-anisha.png";
@@ -37,15 +38,31 @@ const cardsInfo = [
 ];
 
 function Cards() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = (e) => {
+    const scrollPosition = e.target.scrollLeft;
+    const cardWidth = 340;
+    const index = Math.round(scrollPosition / cardWidth);
+    setActiveIndex(index);
+  };
+
+  console.log(activeIndex);
   return (
     <div className="px-6 flex flex-col gap-16 mt-16 w-full   ">
       <h3 className="heading-2 text-center">What they've said</h3>
-      <div className="overflow-x-auto">
-        <div className="flex flex-row gap-[30px] w-[1200px]">
+      <div className="overflow-x-auto snap-x " onScroll={handleScroll}>
+        <div className="flex flex-row gap-[30px]  w-[1200px] md:w-[1800px]">
           {cardsInfo.map((card) => (
             <Card key={card.id} card={card} />
           ))}
         </div>
+      </div>
+
+      <div className="mx-auto">
+        <Button className="w-[137px] text-white bg-[#F3603C]">
+          Get Started
+        </Button>
       </div>
     </div>
   );
