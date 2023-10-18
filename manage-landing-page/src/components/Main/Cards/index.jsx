@@ -49,7 +49,7 @@ function Cards() {
 
   console.log(activeIndex);
   return (
-    <div className="px-6 flex flex-col gap-16 mt-16 w-full   ">
+    <div className="px-6 flex flex-col gap-16 mt-16 w-full  mb-20  ">
       <h3 className="heading-2 text-center">What they've said</h3>
       <div className="overflow-x-auto snap-x " onScroll={handleScroll}>
         <div className="flex flex-row gap-[30px]  w-[1200px] md:w-[1800px]">
@@ -59,8 +59,56 @@ function Cards() {
         </div>
       </div>
 
+      {/* For Mobile circle bar */}
+      <div className="mx-auto md:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="45"
+          height="9"
+          viewBox="0 0 45 9"
+          fill="none"
+        >
+          <rect
+            x="1"
+            y="1"
+            width="7"
+            height="7"
+            rx="3.5"
+            stroke="#F3603C"
+            className={`${activeIndex === 0 ? "fill-[#F3603C]" : ""}`}
+          />
+          <rect
+            x="13"
+            y="1"
+            width="7"
+            height="7"
+            rx="3.5"
+            stroke="#F3603C"
+            className={`${activeIndex === 1 ? "fill-[#F3603C]" : ""}`}
+          />
+          <rect
+            x="25"
+            y="1"
+            width="7"
+            height="7"
+            rx="3.5"
+            stroke="#F3603C"
+            className={`${activeIndex === 2 ? "fill-[#F3603C]" : ""}`}
+          />
+          <rect
+            x="37"
+            y="1"
+            width="7"
+            height="7"
+            rx="3.5"
+            stroke="#F3603C"
+            className={`${activeIndex === 3 ? "fill-[#F3603C]" : ""}`}
+          />
+        </svg>
+      </div>
+
       <div className="mx-auto">
-        <Button className="w-[137px] text-white bg-[#F3603C]">
+        <Button className="w-[137px] text-white bg-[#F3603C] ">
           Get Started
         </Button>
       </div>
