@@ -4,8 +4,6 @@ import { useData } from "../../context/DataContext";
 
 function Header() {
   const { isDarkMode, setIsDarkMode } = useData();
-
-  console.log(isDarkMode);
   return (
     <div className="w-full h-[136px] bg-image-mobile ">
       <div className="flex flex-col px-6 pt-9">
