@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         kumb: ["Kumbh Sans", "sans-serif"],
       },
+      backgroundImage:{
+        'image-mobile' : 'url(/src/assets/mobile/bg-pattern-header.svg)'
+      }
     },
   },
   plugins: [],
