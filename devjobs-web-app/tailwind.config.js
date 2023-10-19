@@ -3,10 +3,19 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        violet: "#5964E0",
+        "light-violet": "#939BF4",
+        "dark-blue": "#19202D",
+        "light-grey": "#F4F6F8",
+        gray: "#9DAEC2",
+        "dark-gray": "#6E8098",
+      },
       fontFamily: {
         kumb: ["Kumbh Sans", "sans-serif"],
       },
     },
   },
   plugins: [],
+  darkMode: "class",
 };
