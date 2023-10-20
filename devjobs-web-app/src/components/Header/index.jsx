@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link} from "react-router-dom";
 import { useData } from "../../context/DataContext";
 
 function Header() {
-  const { isDarkMode, setIsDarkMode, setSearchTitle, searchTitle } = useData();
+
+  const { isDarkMode, setIsDarkMode, setSearchTitle, searchTitle , detailedSeach ,setDetailedSearch } = useData();
 
   const handleChange = (e) => {
     setSearchTitle(e.target.value);
   };
+
+
+
 
   return (
     <div className="w-full h-[136px] bg-image-mobile ">
@@ -70,7 +74,7 @@ function Header() {
               onChange={handleChange}
             />
             {/* Filter */}
-            <button className="w-5 h-5 absolute right-[88px] top-[30px] ">
+            <button className="w-5 h-5 absolute right-[88px] top-[30px] " onClick={() => setDetailedSearch(!detailedSeach)} >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

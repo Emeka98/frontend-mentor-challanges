@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import data from "../../../data.json";
 import Button from "../Button";
 import { useData } from "../../context/DataContext";
+import { useClickAway } from "@uidotdev/usehooks";
 
 function Main() {
-  const { searchTitle } = useData();
+  const { searchTitle, detailedSeach, setDetailedSearch } = useData();
   const [pagination, setPagination] = useState(12);
 
+  const ref = useClickAway(() => {
+    setDetailedSearch(false);
+  });
+
+  // Search for Title
   const filteredData = data.filter((item) => {
     return item.position.toLowerCase().includes(searchTitle.toLowerCase());
   });
 
-  console.log(filteredData);
-
+  //Pagination
   const paginationData = data.filter((item, idx) => {
     return idx < pagination;
   });
 
   return (
-    <main className="bg-light-grey dark:bg-midnight min-h-screen">
-      <div className=" pb-[56px] md:pb-[104px]">
+    <main className="bg-light-grey dark:bg-midnight min-h-screen ">
+      <div className=" pb-[56px] md:pb-[104px] relative">
         {/* Cards */}
         <div className="flex flex-col gap-[49px] pt-[97px] px-6 md:flex-wrap md:flex-row md:justify-center md:container md:mx-auto  ">
           {/* Card */}
@@ -67,6 +72,57 @@ function Main() {
           </div>
         )}
       </div>
+      {/* Detailed Search */}
+
+      {detailedSeach && (
+        <div
+          ref={ref}
+          className="flex flex-col fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-white w-[327px] rounded-md "
+        >
+          <div className="flex h-full gap-4 w-full   px-6 pt-6 mb-6">
+            <div className="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="24"
+                viewBox="0 0 17 24"
+                fill="none"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8.44772 0C10.6804 0 12.7797 0.870546 14.3585 2.45105C17.2803 5.37556 17.6434 10.8781 15.1348 14.2255L8.44772 23.894L1.75059 14.2119C-0.747974 10.8781 -0.384871 5.37556 2.53695 2.45105C4.11577 0.870546 6.21462 0 8.44772 0ZM5.47359 8.29091C5.47359 9.97484 6.84274 11.3455 8.52487 11.3455C10.207 11.3455 11.5762 9.97484 11.5762 8.29091C11.5762 6.60698 10.207 5.23636 8.52487 5.23636C6.84274 5.23636 5.47359 6.60698 5.47359 8.29091Z"
+                  fill="#5964E0"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              className="w-full h-full pl-6  outline-none text-dark-blue text-base font-normal dark:bg-dark-blue dark:text-white dark:placeholder:text-[rgba(255, 255, 255, 0.50)]"
+              placeholder="Filter by location..."
+            />
+          </div>
+          <span className="w-full h-[1px] bg-dark-gray opacity-20 mb-6 "></span>
+          <div className="px-6 flex gap-4 mb-6">
+            <input id="checkbox" type="checkbox" />
+            <label
+              className="text-base font-bold text-dark-blue"
+              htmlFor="checkbox"
+            >
+              Full Time Only
+            </label>
+          </div>
+          <div className="px-6 pb-6">
+            <Button variant="primary" customStyle="w-full ">
+              Search
+            </Button>
+          </div>
+        </div>
+      )}
+      {/* Overlay */}
+      {detailedSeach && (
+        <div className="fixed left-0 right-0 top-0 bottom-0 z-10 bg-black opacity-50"></div>
+      )}
     </main>
   );
 }

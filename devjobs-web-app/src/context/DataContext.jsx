@@ -4,8 +4,8 @@ const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [searchTitle , setSearchTitle] = useState('')
-
+  const [searchTitle, setSearchTitle] = useState("");
+  const [detailedSeach, setDetailedSearch] = useState(false);
 
   const contextData = useMemo(
     () => ({
@@ -13,13 +13,21 @@ export const DataContextProvider = ({ children }) => {
       setIsDarkMode,
       searchTitle,
       setSearchTitle,
+      detailedSeach,
+      setDetailedSearch,
     }),
 
-    [isDarkMode, setIsDarkMode , searchTitle , setSearchTitle]
+    [
+      isDarkMode,
+      setIsDarkMode,
+      searchTitle,
+      setSearchTitle,
+      setDetailedSearch,
+      detailedSeach,
+    ]
   );
 
-
-
+  console.log(detailedSeach)
 
   return (
     <DataContext.Provider value={contextData}>{children}</DataContext.Provider>
