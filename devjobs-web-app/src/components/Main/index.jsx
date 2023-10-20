@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import data from "../../../data.json";
+import Button from "../Button";
 
 function Main() {
-  const [pagination, setPagination] = useState(5);
+  const [pagination, setPagination] = useState(12);
+
   const paginationData = data.filter((item, idx) => {
     return idx < pagination;
   });
 
-
-
-  console.log(paginationData , pagination);
-
   return (
     <main className="bg-light-grey min-h-screen">
-      <div>
+      <div className=" pb-[56px] md:pb-[104px]">
         {/* Cards */}
-        <div className="flex flex-col gap-[49px] pt-[97px] px-6">
+        <div className="flex flex-col gap-[49px] pt-[97px] px-6 md:flex-wrap md:flex-row md:justify-center md:container md:mx-auto  ">
           {/* Card */}
-          {data.map((card) => (
+          {paginationData.map((card) => (
             <div
-              className="bg-white flex flex-col gap-4 px-8 pb-9 w-full"
+              className="bg-white  flex flex-col gap-4 px-8 pb-9  flex-1 max-w-[350px] min-w-[327px] "
               key={card.id}
             >
               <div
@@ -48,9 +46,18 @@ function Main() {
               </h4>
             </div>
           ))}
-
-          <button onClick={() =>setPagination(pagination + 5) } className="bg-red-300">Load More</button>
         </div>
+
+        {pagination < 15 && (
+          <div className="w-full flex justify-center mt-14">
+            <Button
+              variant="primary"
+              onClick={() => setPagination(pagination + 5)}
+            >
+              Load More
+            </Button>
+          </div>
+        )}
       </div>
     </main>
   );

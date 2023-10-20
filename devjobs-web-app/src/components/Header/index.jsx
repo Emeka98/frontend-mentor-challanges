@@ -6,6 +6,7 @@ function Header() {
   const { isDarkMode, setIsDarkMode } = useData();
   return (
     <div className="w-full h-[136px] bg-image-mobile ">
+      <div className="md:mx-auto md:container">
       <div className="flex flex-col px-6 pt-9">
         <div className="flex justify-between ">
           <Link to={"/"}>
@@ -92,6 +93,8 @@ function Header() {
           </button>
         </div>
       </div>
+      </div>
+    
     </div>
   );
 }
