@@ -4,8 +4,12 @@ const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [searchTitle, setSearchTitle] = useState("");
   const [detailedSeach, setDetailedSearch] = useState(false);
+
+  //FORM
+  const [searchTitle, setSearchTitle] = useState("");
+  const [location , setLocation] = useState('')
+  const [isFullTime , setIsFullTime] = useState(false)
 
   const contextData = useMemo(
     () => ({
@@ -15,6 +19,11 @@ export const DataContextProvider = ({ children }) => {
       setSearchTitle,
       detailedSeach,
       setDetailedSearch,
+      location,
+      setLocation,
+      isFullTime,
+      setIsFullTime
+
     }),
 
     [
@@ -24,10 +33,14 @@ export const DataContextProvider = ({ children }) => {
       setSearchTitle,
       setDetailedSearch,
       detailedSeach,
+      location,
+      setLocation,
+      isFullTime,
+      setIsFullTime
     ]
   );
 
-  console.log(detailedSeach)
+
 
   return (
     <DataContext.Provider value={contextData}>{children}</DataContext.Provider>

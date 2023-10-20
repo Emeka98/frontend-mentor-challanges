@@ -3,20 +3,33 @@ import data from "../../../data.json";
 import Button from "../Button";
 import { useData } from "../../context/DataContext";
 import { useClickAway } from "@uidotdev/usehooks";
+import { Link } from "react-router-dom";
 
 function Main() {
-  const { searchTitle, detailedSeach, setDetailedSearch } = useData();
+  const {
+    searchTitle,
+    detailedSeach,
+    setDetailedSearch,
+    isFullTime,
+    location,
+  } = useData();
   const [pagination, setPagination] = useState(12);
 
   const ref = useClickAway(() => {
     setDetailedSearch(false);
   });
 
-  // Search for Title
   const filteredData = data.filter((item) => {
-    return item.position.toLowerCase().includes(searchTitle.toLowerCase());
+    return (
+      (!isFullTime || item.contract.toLowerCase() === "full time") &&
+      (!searchTitle ||
+        item.position.toLowerCase().includes(searchTitle.toLowerCase())) &&
+      (!location ||
+        item.location.toLowerCase().includes(location.toLowerCase()))
+    );
   });
 
+  console.log(filteredData);
   //Pagination
   const paginationData = data.filter((item, idx) => {
     return idx < pagination;
@@ -28,10 +41,14 @@ function Main() {
         {/* Cards */}
         <div className="flex flex-col gap-[49px] pt-[97px] px-6 md:flex-wrap md:flex-row md:justify-center md:container md:mx-auto  ">
           {/* Card */}
-          {(searchTitle ? filteredData : paginationData).map((card) => (
-            <div
+          {(searchTitle || isFullTime || location
+            ? filteredData
+            : paginationData
+          ).map((card) => (
+            <Link
               className="bg-white dark:bg-dark-blue  flex flex-col gap-4 px-8 pb-9  flex-1 max-w-[350px] min-w-[327px] "
               key={card.id}
+              to={`${card.id}`}
             >
               <div
                 className={`w-[50px] h-[50px] inline-flex justify-center items-center -mt-[25px] rounded-[16px] overflow-hidden `}
@@ -57,7 +74,7 @@ function Main() {
               <h4 className="mt-7 text-violet text-sm  font-bold">
                 {card.location}
               </h4>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -77,7 +94,7 @@ function Main() {
       {detailedSeach && (
         <div
           ref={ref}
-          className="flex flex-col fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-white w-[327px] rounded-md "
+          className="flex flex-col fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-white w-[327px] rounded-md dark:bg-dark-blue z-50 "
         >
           <div className="flex h-full gap-4 w-full   px-6 pt-6 mb-6">
             <div className="">
@@ -104,10 +121,10 @@ function Main() {
           </div>
           <span className="w-full h-[1px] bg-dark-gray opacity-20 mb-6 "></span>
           <div className="px-6 flex gap-4 mb-6">
-            <input id="checkbox" type="checkbox" />
+            <input id="checkbox2" type="checkbox" />
             <label
-              className="text-base font-bold text-dark-blue"
-              htmlFor="checkbox"
+              className="text-base font-bold text-dark-blue dark:text-white"
+              htmlFor="checkbox2"
             >
               Full Time Only
             </label>
@@ -121,7 +138,7 @@ function Main() {
       )}
       {/* Overlay */}
       {detailedSeach && (
-        <div className="fixed left-0 right-0 top-0 bottom-0 z-10 bg-black opacity-50"></div>
+        <div className="fixed left-0 right-0 top-0 bottom-0  bg-black opacity-50 z-40"></div>
       )}
     </main>
   );
