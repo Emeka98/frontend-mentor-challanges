@@ -9,15 +9,17 @@ function Main() {
     return idx < pagination;
   });
 
+
+
   return (
-    <main className="bg-light-grey min-h-screen">
+    <main className="bg-light-grey dark:bg-midnight min-h-screen">
       <div className=" pb-[56px] md:pb-[104px]">
         {/* Cards */}
         <div className="flex flex-col gap-[49px] pt-[97px] px-6 md:flex-wrap md:flex-row md:justify-center md:container md:mx-auto  ">
           {/* Card */}
           {paginationData.map((card) => (
             <div
-              className="bg-white  flex flex-col gap-4 px-8 pb-9  flex-1 max-w-[350px] min-w-[327px] "
+              className="bg-white dark:bg-dark-blue  flex flex-col gap-4 px-8 pb-9  flex-1 max-w-[350px] min-w-[327px] "
               key={card.id}
             >
               <div

@@ -6,6 +6,7 @@ export default {
       colors: {
         violet: "#5964E0",
         "light-violet": "#939BF4",
+        "midnight" : "#121721",
         "dark-blue": "#19202D",
         "light-grey": "#F4F6F8",
         gray: "#9DAEC2",
