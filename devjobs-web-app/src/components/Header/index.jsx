@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 
 function Header() {
-  const { isDarkMode, setIsDarkMode } = useData();
+  const { isDarkMode, setIsDarkMode, setSearchTitle, searchTitle } = useData();
+
+  const handleChange = (e) => {
+    setSearchTitle(e.target.value);
+  };
+
   return (
     <div className="w-full h-[136px] bg-image-mobile ">
       <div className="md:mx-auto md:container">
@@ -61,6 +66,8 @@ function Header() {
               className="w-full h-full pl-6 pr-28 outline-none text-dark-blue text-base font-normal dark:bg-dark-blue dark:text-white dark:placeholder:text-[rgba(255, 255, 255, 0.50)]  "
               type="text"
               placeholder="Filter by title..."
+              value={searchTitle}
+              onChange={handleChange}
             />
             {/* Filter */}
             <button className="w-5 h-5 absolute right-[88px] top-[30px] ">

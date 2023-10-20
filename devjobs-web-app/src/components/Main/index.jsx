@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../../../data.json";
 import Button from "../Button";
+import { useData } from "../../context/DataContext";
 
 function Main() {
+  const { searchTitle } = useData();
   const [pagination, setPagination] = useState(12);
+
+  const filteredData = data.filter((item) => {
+    return item.position.toLowerCase().includes(searchTitle.toLowerCase());
+  });
+
+  console.log(filteredData);
 
   const paginationData = data.filter((item, idx) => {
     return idx < pagination;
   });
-
-
 
   return (
     <main className="bg-light-grey dark:bg-midnight min-h-screen">
@@ -17,7 +23,7 @@ function Main() {
         {/* Cards */}
         <div className="flex flex-col gap-[49px] pt-[97px] px-6 md:flex-wrap md:flex-row md:justify-center md:container md:mx-auto  ">
           {/* Card */}
-          {paginationData.map((card) => (
+          {(searchTitle ? filteredData : paginationData).map((card) => (
             <div
               className="bg-white dark:bg-dark-blue  flex flex-col gap-4 px-8 pb-9  flex-1 max-w-[350px] min-w-[327px] "
               key={card.id}
@@ -50,7 +56,7 @@ function Main() {
           ))}
         </div>
 
-        {pagination < 15 && (
+        {pagination < 15 && !searchTitle && (
           <div className="w-full flex justify-center mt-14">
             <Button
               variant="primary"
