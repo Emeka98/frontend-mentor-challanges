@@ -12,6 +12,8 @@ function Main() {
     setDetailedSearch,
     isFullTime,
     location,
+    setLocation,
+    setIsFullTime
   } = useData();
   const [pagination, setPagination] = useState(12);
 
@@ -115,11 +117,13 @@ function Main() {
               type="text"
               className="w-full h-full pl-6  outline-none text-dark-blue text-base font-normal dark:bg-dark-blue dark:text-white dark:placeholder:text-[rgba(255, 255, 255, 0.50)]"
               placeholder="Filter by location..."
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
             />
           </div>
           <span className="w-full h-[1px] bg-dark-gray opacity-20 mb-6 "></span>
           <div className="px-6 flex gap-4 mb-6">
-            <input id="checkbox2" type="checkbox" />
+            <input id="checkbox2" type="checkbox" value={isFullTime} onChange={() => setIsFullTime(!isFullTime) } />
             <label
               className="text-base font-bold text-dark-blue dark:text-white"
               htmlFor="checkbox2"
@@ -128,7 +132,7 @@ function Main() {
             </label>
           </div>
           <div className="px-6 pb-6">
-            <Button variant="primary" customStyle="w-full ">
+            <Button variant="primary" customStyle="w-full " onClick={() => setDetailedSearch(false)}>
               Search
             </Button>
           </div>

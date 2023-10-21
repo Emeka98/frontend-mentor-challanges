@@ -22,11 +22,10 @@ Users should be able to:
 - Be able to filter jobs on the index page by title, location, and whether a job is for a full-time position
 - Be able to click a job from the index page so that they can read more information and apply for the job
 
-
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/devjobs-web-app-with-react-and-talwind-dddpxdQilK)
+- Live Site URL: [Add live site URL here](https://joblistinggmentor.netlify.app/)
 
 ## My process
 
@@ -38,7 +37,6 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-
 
 ## Author
 
