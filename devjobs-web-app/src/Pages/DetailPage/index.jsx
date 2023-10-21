@@ -19,9 +19,11 @@ function DetailPage() {
     throw new Error("There is no match company");
   }
 
+  console.log(companyItem);
+
   return (
-    <div className={`${isDarkMode ? "dark" : ""}`}>
-      <header className=" bg-light-grey dark:bg-midnight ">
+    <div className={`${isDarkMode ? "dark" : ""} flex flex-col  `}>
+      <header className=" bg-light-grey dark:bg-midnight  ">
         <div className="w-full h-[136px]  bg-image-mobile md:rounded-bl-[100px]    ">
           <div className="md:mx-auto md:container">
             <div className="flex flex-col px-6 pt-9">
@@ -73,7 +75,7 @@ function DetailPage() {
                 </button>
               </div>
               {/* Card */}
-              <div className="w-full h-full md:h-[140px] max-w-[730px] md:mx-auto bg-white mt-12 md:mt-8  dark:bg-dark-blue flex flex-col items-center rounded-md md:flex-row">
+              <div className="w-full h-full md:h-[140px] z-10 max-w-[730px] md:mx-auto bg-white mt-12 md:mt-8  dark:bg-dark-blue flex flex-col items-center rounded-md md:flex-row">
                 <div
                   className={`w-[50px] h-[50px] md:h-full md:mt-0 md:w-[140px] md:rounded-none inline-flex justify-center items-center -mt-[25px] rounded-[16px] overflow-hidden  `}
                   style={{ background: companyItem.logoBackground }}
@@ -104,7 +106,99 @@ function DetailPage() {
         </div>
       </header>
 
-      <main className="bg-light-grey dark:bg-midnight min-h-screen"></main>
+      <main className="bg-light-grey dark:bg-midnight min-h-screen px-6 py-[214px]">
+        <div className="w-full max-w-[730px] md:mx-auto bg-white dark:bg-dark-blue  ">
+          <section className=" w-full px-6 py-10 md:p-12">
+            <div className="flex flex-col gap-[54px] md:flex-row md:justify-between md:items-center">
+              <div className="flex flex-col gap-2 ">
+                <div className="flex gap-3 items-center">
+                  <p className="custom-text">{companyItem.postedAt}</p>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="4"
+                      height="4"
+                      viewBox="0 0 4 4"
+                      fill="none"
+                    >
+                      <circle cx="2" cy="2" r="2" fill="#6E8098" />
+                    </svg>
+                  </span>
+                  <p className="custom-text">{companyItem.contract}</p>
+                </div>
+                <h3 className="heading-3">{companyItem.position}</h3>
+                <h4 className=" text-violet text-sm font-bold ">
+                  {companyItem.location}
+                </h4>
+              </div>
+              <div className="md:w-[141px]">
+                <Button variant="primary" customStyle="w-full">
+                  <a
+                    className="w-full h-full grid place-items-center "
+                    href={companyItem.apply}
+                  >
+                    Apply Now
+                  </a>
+                </Button>
+              </div>
+            </div>
+            {/* description */}
+            <div className="mt-11">
+              <p className="custom-text">{companyItem.description}</p>
+            </div>
+            {/* Requirements */}
+            <div className="flex flex-col gap-7 mt-10">
+              <h3 className="heading-2">Requirements</h3>
+              <p className="custom-text">{companyItem.requirements.content}</p>
+              <ul className="flex flex-col gap-2">
+                {companyItem.requirements.items.map((item, i) => (
+                  <li key={i} className="flex gap-8">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="4"
+                      height="4"
+                      viewBox="0 0 4 4"
+                      fill="none"
+                      className="mt-[10px] shrink-0"
+                    >
+                      <circle cx="2" cy="2" r="2" fill="#5964E0" />
+                    </svg>
+                    <p className="custom-text">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* What you will do */}
+            <div className="flex flex-col gap-7 mt-10">
+              <h3 className="heading-2">What You Will Do</h3>
+              <p className="custom-text">{companyItem.role.content}</p>
+              <div className="flex flex-col gap-2">
+                {companyItem.role.items.map((item, i) => (
+                  <div key={companyItem.id} className="flex gap-7 ">
+                    <h4 className="text-violet text-base font-bold leading-6">{`${
+                      i + 1
+                    }`}</h4>
+                    <p className="custom-text">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <div className="w-full h-[96px] bg-white dark:bg-dark-blue">
+        <div className="w-full md:max-w-[730px] md:mx-auto h-full px-6 flex items-center justify-center md:justify-between">
+          <div>
+            <h3 className="heading-2">{companyItem.position}</h3>
+            <p className="custom-text">{companyItem.company}</p>
+          </div>
+
+          <Button variant="primary" customStyle="w-full md:w-[141px]">
+            <a className="w-full h-full grid place-items-center" href={companyItem.apply}>Apply Now</a>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

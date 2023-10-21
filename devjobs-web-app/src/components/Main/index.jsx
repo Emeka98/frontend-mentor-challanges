@@ -28,8 +28,6 @@ function Main() {
         item.location.toLowerCase().includes(location.toLowerCase()))
     );
   });
-
-  console.log(filteredData);
   //Pagination
   const paginationData = data.filter((item, idx) => {
     return idx < pagination;
