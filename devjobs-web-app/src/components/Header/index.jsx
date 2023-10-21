@@ -19,7 +19,7 @@ function Header() {
 
   return (
     <header className="bg-light-grey dark:bg-midnight">
-      <div className="w-full h-[136px]  bg-image-mobile md:rounded-bl-[100px] bg-red-600  ">
+      <div className="w-full h-[136px]  bg-image-mobile md:rounded-bl-[100px]   ">
         <div className="md:mx-auto md:container">
           <div className="flex flex-col px-6 pt-9">
             <div className="flex justify-between ">

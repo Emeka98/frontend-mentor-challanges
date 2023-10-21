@@ -8,8 +8,8 @@ export const DataContextProvider = ({ children }) => {
 
   //FORM
   const [searchTitle, setSearchTitle] = useState("");
-  const [location , setLocation] = useState('')
-  const [isFullTime , setIsFullTime] = useState(false)
+  const [location, setLocation] = useState("");
+  const [isFullTime, setIsFullTime] = useState(false);
 
   const contextData = useMemo(
     () => ({
@@ -22,8 +22,7 @@ export const DataContextProvider = ({ children }) => {
       location,
       setLocation,
       isFullTime,
-      setIsFullTime
-
+      setIsFullTime,
     }),
 
     [
@@ -36,11 +35,9 @@ export const DataContextProvider = ({ children }) => {
       location,
       setLocation,
       isFullTime,
-      setIsFullTime
+      setIsFullTime,
     ]
   );
-
-
 
   return (
     <DataContext.Provider value={contextData}>{children}</DataContext.Provider>

@@ -18,9 +18,6 @@ function DetailPage() {
   } else {
     throw new Error("There is no match company");
   }
-
-  console.log(companyItem);
-
   return (
     <div className={`${isDarkMode ? "dark" : ""} flex flex-col  `}>
       <header className=" bg-light-grey dark:bg-midnight  ">
@@ -75,9 +72,9 @@ function DetailPage() {
                 </button>
               </div>
               {/* Card */}
-              <div className="w-full h-full md:h-[140px] z-10 max-w-[730px] md:mx-auto bg-white mt-12 md:mt-8  dark:bg-dark-blue flex flex-col items-center rounded-md md:flex-row">
+              <div className="w-full h-full md:h-[140px] z-50 max-w-[730px] md:mx-auto bg-white mt-12 md:mt-8  dark:bg-dark-blue flex flex-col items-center rounded-md md:flex-row">
                 <div
-                  className={`w-[50px] h-[50px] md:h-full md:mt-0 md:w-[140px] md:rounded-none inline-flex justify-center items-center -mt-[25px] rounded-[16px] overflow-hidden  `}
+                  className={`w-[50px] h-[50px] md:h-full z-50 md:mt-0 md:w-[140px] md:rounded-none inline-flex justify-center items-center -mt-[25px] rounded-[16px] overflow-hidden  `}
                   style={{ background: companyItem.logoBackground }}
                 >
                   <img
@@ -91,14 +88,20 @@ function DetailPage() {
                     {companyItem.company}
                   </h3>
                   <h4 className="mt-[13px] md:mt-0 text-gray text-base font-normal leading-normal">
-                    {companyItem.website}
+                    <a href={companyItem.website}>{companyItem.website}</a>
                   </h4>
                 </div>
 
                 <div className="mt-[27px] mb-8 md:ml-auto pr-10">
-                  <Button variant="secondary">
-                    <a href={companyItem.website}>Company Site</a>
-                  </Button>
+                  {isDarkMode ? (
+                    <Button variant="dark">
+                      <a href={companyItem.website}>Company Site</a>
+                    </Button>
+                  ) : (
+                    <Button variant="secondary">
+                      <a href={companyItem.website}>Company Site</a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -189,13 +192,18 @@ function DetailPage() {
 
       <div className="w-full h-[96px] bg-white dark:bg-dark-blue">
         <div className="w-full md:max-w-[730px] md:mx-auto h-full px-6 flex items-center justify-center md:justify-between">
-          <div>
+          <div className="hidden md:flex md:flex-col md:gap-3">
             <h3 className="heading-2">{companyItem.position}</h3>
             <p className="custom-text">{companyItem.company}</p>
           </div>
 
           <Button variant="primary" customStyle="w-full md:w-[141px]">
-            <a className="w-full h-full grid place-items-center" href={companyItem.apply}>Apply Now</a>
+            <a
+              className="w-full h-full grid place-items-center"
+              href={companyItem.apply}
+            >
+              Apply Now
+            </a>
           </Button>
         </div>
       </div>
