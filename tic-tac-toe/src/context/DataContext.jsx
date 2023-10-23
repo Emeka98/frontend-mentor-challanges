@@ -1,9 +1,17 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState , useMemo } from "react";
 
 const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
-  const contextData = "Güney";
+  const [isPlayer, setIsPlayer] = useState(false);
+
+  const contextData = useMemo(
+    () => ({
+      isPlayer,
+      setIsPlayer,
+    }),
+    [isPlayer]
+  );
 
   return (
     <DataContext.Provider value={contextData}>{children}</DataContext.Provider>

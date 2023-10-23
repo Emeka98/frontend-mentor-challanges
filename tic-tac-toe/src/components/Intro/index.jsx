@@ -1,10 +1,9 @@
 import React from "react";
-import Button from '../Button'
+import Button from "../Button";
 import { useData } from "../../context/dataContext";
 function Intro() {
-
-const contextData = useData()
-console.log(contextData)
+  const { isPlayer } = useData();
+  console.log(isPlayer);
   return (
     <main className="bg-dark-navy w-screen h-screen flex justify-center items-center px-6">
       <div className="flex flex-col gap-8 md:gap-10 justify-center items-center w-full max-w-[460px] h-full ">
@@ -80,8 +79,12 @@ console.log(contextData)
 
         {/* Buttons */}
         <div className="flex flex-col gap-5 w-full">
-          <div className="h-[67px]"><Button variant="primary">New Game(VS CPU)</Button></div>
-       <div className="h-[67px]"><Button variant="secondary">New Game(VS PLAYER)</Button></div>
+          <div className="h-[67px]">
+            <Button variant="primary">New Game(VS CPU)</Button>
+          </div>
+          <div className="h-[67px]">
+            <Button variant="secondary">New Game(VS PLAYER)</Button>
+          </div>
         </div>
       </div>
     </main>
