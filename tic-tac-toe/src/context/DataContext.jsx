@@ -1,16 +1,28 @@
-import React, { createContext, useContext, useState , useMemo } from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const [isPlayer, setIsPlayer] = useState(false);
+  const [currUser, setCurrUser] = useState("x");
+
+  const generateBoard = (size) => {
+    const newBoard = [];
+    for (let i = 0; i < size; i++) {
+      newBoard.push([...Array(size)]);
+    }
+    return newBoard;
+  };
 
   const contextData = useMemo(
     () => ({
       isPlayer,
       setIsPlayer,
+      generateBoard,
+      currUser,
+      setCurrUser,
     }),
-    [isPlayer]
+    [isPlayer, generateBoard, currUser, setCurrUser]
   );
 
   return (

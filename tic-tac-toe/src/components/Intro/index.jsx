@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import { useData } from "../../context/dataContext";
+import { Link } from "react-router-dom";
 function Intro() {
   const { isPlayer } = useData();
   console.log(isPlayer);
@@ -80,10 +81,14 @@ function Intro() {
         {/* Buttons */}
         <div className="flex flex-col gap-5 w-full">
           <div className="h-[67px]">
-            <Button variant="primary">New Game(VS CPU)</Button>
+            <Button variant="primary">
+              <Link to={"/game"}>New Game(VS CPU)</Link>
+            </Button>
           </div>
           <div className="h-[67px]">
-            <Button variant="secondary">New Game(VS PLAYER)</Button>
+            <Button variant="secondary">
+              <Link to={"/game"}>New Game(VS PLAYER)</Link>
+            </Button>
           </div>
         </div>
       </div>
