@@ -14,7 +14,26 @@ function Game() {
     setCurrUser(currUser === "x" ? "o" : "x");
     if (checkForWin(board)) {
       console.log(currUser + "wins");
+      console.log(board);
     }
+
+    if(checkTied(board)){
+      console.log('Oyun Berabere')
+    }
+
+  };
+
+  const checkTied = (board) => {
+  if(!checkForWin(board)){
+    for(let row of board){
+      for(let cell of row){
+        if(cell !== undefined){
+          return true
+        }
+      }
+    }
+  }
+  return false
   };
 
   const checkForWin = (board) => {
