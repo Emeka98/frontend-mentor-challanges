@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../context/dataContext";
 import IconO from "./Images/IconO";
 import IconX from "./Images/IconX";
 import Logo from "../../assets/logo.svg";
 
 function Game() {
-  const { generateBoard, currUser, setCurrUser } = useData();
+  const { generateBoard, currUser, setCurrUser, isCpu, playerOneMark } =
+    useData();
   const [board, setBoard] = useState(generateBoard(3));
 
   const handleClick = (r, c) => {
@@ -20,6 +21,34 @@ function Game() {
     if (checkTied(board)) {
       console.log("Oyun Berabere");
     }
+  };
+
+  // CPU is TRUE
+
+  useEffect(() => {
+    if (
+      (isCpu && currUser === "x" && playerOneMark === "o") ||
+      (isCpu && currUser === "o" && playerOneMark === "x")
+    ) {
+      autoMove();
+    }
+    checkForWin(board);
+    checkTied(board);
+  });
+
+  const autoMove = () => {
+    const r = Math.floor(Math.random() * board.length);
+    const c = Math.floor(Math.random() * board.length);
+
+    setTimeout(() => {
+      if (!board[r][c]) {
+        board[r][c] = currUser === "x" ? <IconX /> : <IconO />;
+        setBoard([...board]);
+        setCurrUser(currUser === "x" ? "o" : "x");
+      } else {
+        autoMove();
+      }
+    }, 500);
   };
 
   const checkTied = (board) => {
@@ -105,6 +134,7 @@ function Game() {
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-dark-navy">
       <div className="w-full h-full max-w-[490px] flex flex-col justify-center p-6 ">
+        {/* Top Bar */}
         <div className="flex flex-row mb-16 justify-between">
           <div>
             <img src={Logo} alt="logo" />
@@ -223,19 +253,33 @@ function Game() {
         <div className="flex  gap-5 mt-5">
           <div className="flex-1 flex justify-center items-center h-16 bg-light-blue rounded-[10px]">
             <div className="h-full w-full  flex flex-col items-center justify-center ">
-              <h3 className="custom-text text-dark-navy uppercase text-[12px] ">X(P2)</h3>
+              <h3 className="custom-text text-dark-navy uppercase text-[12px] ">
+                X(
+                {isCpu && playerOneMark === "x"
+                  ? "YOU"
+                  : "CPU" || (!isCpu && "P2")}
+                )
+              </h3>
               <h6 className="heading-s text-dark-navy uppercase">14</h6>
             </div>
           </div>
           <div className="flex-1 h-16 bg-silver rounded-[10px] ">
             <div className="h-full w-full  flex flex-col items-center justify-center ">
-              <h3 className="custom-text text-dark-navy uppercase text-[12px]">Ties</h3>
+              <h3 className="custom-text text-dark-navy uppercase text-[12px]">
+                Ties
+              </h3>
               <h6 className="heading-s text-dark-navy uppercase">14</h6>
             </div>
           </div>
           <div className="flex-1 h-16 bg-light-yellow rounded-[10px] ">
             <div className="h-full w-full flex flex-col items-center justify-center ">
-              <h3 className="custom-text text-dark-navy uppercase text-[12px]">O(P1)</h3>
+              <h3 className="custom-text text-dark-navy uppercase text-[12px]">
+                O(
+                {isCpu && playerOneMark === "o"
+                  ? "YOU"
+                  : "CPU" || (!isCpu && "P1")}
+                )
+              </h3>
               <h6 className="heading-s text-dark-navy uppercase">14</h6>
             </div>
           </div>

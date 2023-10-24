@@ -3,7 +3,9 @@ import React, { createContext, useContext, useState, useMemo } from "react";
 const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
+  const [playerOneMark, setPlayerOneMark] = useState("o");
   const [isPlayer, setIsPlayer] = useState(false);
+  const [isCpu, setIsCpu] = useState(false);
   const [currUser, setCurrUser] = useState("x");
 
   const generateBoard = (size) => {
@@ -21,8 +23,21 @@ export function DataContextProvider({ children }) {
       generateBoard,
       currUser,
       setCurrUser,
+      isCpu,
+      setIsCpu,
+      playerOneMark,
+      setPlayerOneMark,
     }),
-    [isPlayer, generateBoard, currUser, setCurrUser]
+    [
+      isPlayer,
+      generateBoard,
+      currUser,
+      setCurrUser,
+      isCpu,
+      setIsCpu,
+      playerOneMark,
+      setPlayerOneMark,
+    ]
   );
 
   return (
