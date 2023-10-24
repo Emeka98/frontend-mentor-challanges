@@ -17,23 +17,23 @@ function Game() {
       console.log(board);
     }
 
-    if(checkTied(board)){
-      console.log('Oyun Berabere')
+    if (checkTied(board)) {
+      console.log("Oyun Berabere");
     }
-
   };
 
   const checkTied = (board) => {
-  if(!checkForWin(board)){
-    for(let row of board){
-      for(let cell of row){
-        if(cell !== undefined){
-          return true
+    if (!checkForWin(board)) {
+      for (let row of board) {
+        for (let cell of row) {
+          if (cell === undefined) {
+            return false;
+          }
         }
       }
+      return true;
     }
-  }
-  return false
+    return false;
   };
 
   const checkForWin = (board) => {
@@ -218,6 +218,27 @@ function Game() {
               ))}
             </div>
           ))}
+        </div>
+        {/* Score */}
+        <div className="flex  gap-5 mt-5">
+          <div className="flex-1 flex justify-center items-center h-16 bg-light-blue rounded-[10px]">
+            <div className="h-full w-full  flex flex-col items-center justify-center ">
+              <h3 className="custom-text text-dark-navy uppercase text-[12px] ">X(P2)</h3>
+              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+            </div>
+          </div>
+          <div className="flex-1 h-16 bg-silver rounded-[10px] ">
+            <div className="h-full w-full  flex flex-col items-center justify-center ">
+              <h3 className="custom-text text-dark-navy uppercase text-[12px]">Ties</h3>
+              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+            </div>
+          </div>
+          <div className="flex-1 h-16 bg-light-yellow rounded-[10px] ">
+            <div className="h-full w-full flex flex-col items-center justify-center ">
+              <h3 className="custom-text text-dark-navy uppercase text-[12px]">O(P1)</h3>
+              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+            </div>
+          </div>
         </div>
       </div>
     </div>
