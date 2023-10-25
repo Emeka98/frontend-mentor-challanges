@@ -3,13 +3,14 @@ import { useData } from "../../context/dataContext";
 import IconO from "./Images/IconO";
 import IconX from "./Images/IconX";
 import Logo from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 function Game() {
   const { generateBoard, currUser, setCurrUser, isCpu, playerOneMark } =
     useData();
   const [board, setBoard] = useState(generateBoard(3));
-  const [isOpen, setIsOpen] = useState(true);
-  const [isRestart, setIsRestart] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isRestart, setIsRestart] = useState(false);
 
   const handleClick = (r, c) => {
     !board[r][c] && (board[r][c] = currUser === "x" ? <IconX /> : <IconO />);
@@ -49,6 +50,7 @@ function Game() {
           }
         }
       }
+      setIsOpen(true);
       return true;
     }
     return false;
@@ -156,9 +158,9 @@ function Game() {
   };
 
   const handleRestart = () => {
-   handleClose()
-   restartGame()
-  }
+    handleClose();
+    restartGame();
+  };
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-dark-navy relative">
       {/* ConTainer */}
@@ -328,8 +330,30 @@ function Game() {
                   >
                     No,Cancel
                   </button>
-                  <button onClick={handleRestart} className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase ">
+                  <button
+                    onClick={handleRestart}
+                    className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                  >
                     Yes, Restart
+                  </button>
+                </div>
+              </div>
+            )}
+            {checkTied && (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-6">
+                <h2 className="heading-m">Round Tied</h2>
+                <div className="flex gap-4 items-center justify-center">
+                  <Link
+                    to={"/"}
+                    className="w-[139px] h-[52px] flex-shrink-0 inline-flex justify-center items-center rounded-[10px] bg-silver hover:bg-silver-hover shadow-custom-cancel text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                  >
+                    Quit
+                  </Link>
+                  <button
+                    onClick={handleRestart}
+                    className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                  >
+                    Next Round
                   </button>
                 </div>
               </div>
