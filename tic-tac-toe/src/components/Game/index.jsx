@@ -8,6 +8,8 @@ function Game() {
   const { generateBoard, currUser, setCurrUser, isCpu, playerOneMark } =
     useData();
   const [board, setBoard] = useState(generateBoard(3));
+  const [isOpen, setIsOpen] = useState(true);
+  const [isRestart, setIsRestart] = useState(true);
 
   const handleClick = (r, c) => {
     !board[r][c] && (board[r][c] = currUser === "x" ? <IconX /> : <IconO />);
@@ -21,34 +23,6 @@ function Game() {
     if (checkTied(board)) {
       console.log("Oyun Berabere");
     }
-  };
-
-  // CPU is TRUE
-
-  useEffect(() => {
-    if (
-      (isCpu && currUser === "x" && playerOneMark === "o") ||
-      (isCpu && currUser === "o" && playerOneMark === "x")
-    ) {
-      autoMove();
-    }
-    checkForWin(board);
-    checkTied(board);
-  });
-
-  useEffect(() => {
-    if (checkTied(board) || checkForWin(board)) {
-      setTimeout(() => {
-        restartGame();
-      }, 5000);
-    }
-  });
-  // Restart Function
-
-  const restartGame = () => {
-    const newBoard = generateBoard(3);
-    setBoard(newBoard);
-    setCurrUser("x");
   };
 
   const autoMove = () => {
@@ -146,8 +120,48 @@ function Game() {
     return false;
   };
 
+  const restartGame = () => {
+    const newBoard = generateBoard(3);
+    setBoard(newBoard);
+    setCurrUser("x");
+  };
+
+  useEffect(() => {
+    if (
+      (isCpu && currUser === "x" && playerOneMark === "o") ||
+      (isCpu && currUser === "o" && playerOneMark === "x")
+    ) {
+      autoMove();
+    }
+    checkForWin(board);
+    checkTied(board);
+  });
+
+  useEffect(() => {
+    if (checkTied(board) || checkForWin(board)) {
+      setTimeout(() => {
+        restartGame();
+      }, 5000);
+    }
+  });
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsRestart(false);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    setIsRestart(true);
+  };
+
+  const handleRestart = () => {
+   handleClose()
+   restartGame()
+  }
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-dark-navy">
+    <div className="w-screen h-screen flex items-center justify-center bg-dark-navy relative">
+      {/* ConTainer */}
       <div className="w-full h-full max-w-[490px] flex flex-col justify-center p-6 ">
         {/* Top Bar */}
         <div className="flex flex-row mb-16 justify-between">
@@ -189,7 +203,7 @@ function Game() {
             <h3 className="uppercase text-sm font-bold">Turn</h3>
           </div>
           {/* Reset Button */}
-          <div>
+          <button onClick={handleOpen}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -246,7 +260,7 @@ function Game() {
                 </filter>
               </defs>
             </svg>
-          </div>
+          </button>
         </div>
         {/* Game Board */}
         <div className="w-full flex flex-col justify-center items-center   ">
@@ -299,6 +313,29 @@ function Game() {
             </div>
           </div>
         </div>
+
+        {/* Overlay */}
+        {isOpen && <div className="fixed inset-0 bg-black opacity-50"></div>}
+        {isOpen && (
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[228px] md:h-[266px] bg-semi-dark-navy ">
+            {isRestart && (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-6">
+                <h2 className="heading-m">Restart Game?</h2>
+                <div className="flex gap-4 items-center justify-center">
+                  <button
+                    onClick={handleClose}
+                    className="w-[139px] h-[52px] flex-shrink-0 rounded-[10px] bg-silver hover:bg-silver-hover shadow-custom-cancel text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                  >
+                    No,Cancel
+                  </button>
+                  <button onClick={handleRestart} className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase ">
+                    Yes, Restart
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

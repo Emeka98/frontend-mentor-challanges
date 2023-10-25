@@ -16,6 +16,10 @@ export function DataContextProvider({ children }) {
     return newBoard;
   };
 
+    // Restart Function
+
+
+
   const contextData = useMemo(
     () => ({
       isPlayer,
@@ -27,6 +31,7 @@ export function DataContextProvider({ children }) {
       setIsCpu,
       playerOneMark,
       setPlayerOneMark,
+
     }),
     [
       isPlayer,
@@ -37,6 +42,7 @@ export function DataContextProvider({ children }) {
       setIsCpu,
       playerOneMark,
       setPlayerOneMark,
+
     ]
   );
 

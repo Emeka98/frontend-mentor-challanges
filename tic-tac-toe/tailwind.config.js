@@ -22,7 +22,9 @@ export default {
         "custom-primary-button": "0px -8px 0px 0px #CC8B13 inset",
         "custom-secondary-button": "0px -8px 0px 0px #118C87 inset",
         "custom-button" : " 0px -8px 0px 0px #10212A inset",
-        'custom-turn' : " 0px -4px 0px 0px #10212A inset;"
+        'custom-turn' : " 0px -4px 0px 0px #10212A inset",
+        "custom-cancel" :  "0px -4px 0px 0px #6B8997 inset",
+        "custom-restart" :  "0px -4px 0px 0px #CC8B13 inset"
       },
     },
   },

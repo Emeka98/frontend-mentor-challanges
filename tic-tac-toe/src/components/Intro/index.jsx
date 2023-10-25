@@ -4,7 +4,7 @@ import { useData } from "../../context/dataContext";
 import { Link } from "react-router-dom";
 function Intro() {
   const { setIsCpu, playerOneMark, setPlayerOneMark } = useData();
-  console.log(playerOneMark);
+
 
   return (
     <main className="bg-dark-navy w-screen h-screen flex justify-center items-center px-6">
