@@ -50,7 +50,6 @@ function Game() {
           }
         }
       }
-      setIsOpen(true);
       return true;
     }
     return false;
@@ -146,6 +145,23 @@ function Game() {
       }, 5000);
     }
   });
+
+  useEffect(() => {
+    if (checkForWin(board)) {
+      console.log(currUser + " wins");
+      console.log(board);
+      setIsOpen(true);
+    }
+  }, [board, currUser]);
+  
+  useEffect(() => {
+    if (checkTied(board)) {
+      console.log("Oyun Berabere");
+      setIsOpen(true);
+    }
+  }, [board]);
+  
+
 
   const handleClose = () => {
     setIsOpen(false);
@@ -339,7 +355,7 @@ function Game() {
                 </div>
               </div>
             )}
-            {checkTied && (
+            {checkTied(board) && (
               <div className="w-full h-full flex flex-col items-center justify-center gap-6">
                 <h2 className="heading-m">Round Tied</h2>
                 <div className="flex gap-4 items-center justify-center">
@@ -358,6 +374,14 @@ function Game() {
                 </div>
               </div>
             )}
+
+            {
+              checkForWin(board) && (
+                <div>
+                  Oyunu birisi kazandı
+                </div>
+              )
+            }
           </div>
         )}
       </div>
