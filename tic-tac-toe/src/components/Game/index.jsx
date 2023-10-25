@@ -36,6 +36,21 @@ function Game() {
     checkTied(board);
   });
 
+  useEffect(() => {
+    if (checkTied(board) || checkForWin(board)) {
+      setTimeout(() => {
+        restartGame();
+      }, 5000);
+    }
+  });
+  // Restart Function
+
+  const restartGame = () => {
+    const newBoard = generateBoard(3);
+    setBoard(newBoard);
+    setCurrUser("x");
+  };
+
   const autoMove = () => {
     const r = Math.floor(Math.random() * board.length);
     const c = Math.floor(Math.random() * board.length);
