@@ -21,8 +21,6 @@ function Game() {
     setBoard([...board]);
     setCurrUser(currUser === "x" ? "o" : "x");
     if (checkForWin(board)) {
-      console.log(currUser + "wins");
-      console.log(board);
     }
 
     if (checkTied(board)) {
@@ -112,13 +110,11 @@ function Game() {
       }
     }
     if (xCountDiagonal1 === board.length || xCountDiagonal2 === board.length) {
-      console.log("Diagonal win for X");
       return true;
     } else if (
       oCountDiagonal1 === board.length ||
       oCountDiagonal2 === board.length
     ) {
-      console.log("Diagonal win for O");
       return true;
     }
 
@@ -127,7 +123,7 @@ function Game() {
 
   useEffect(() => {
     if (isCpu && checkForWin(board)) {
-      if (currUser == playerOneMark) {
+      if (currUser !== playerOneMark) {
         setCpuPoint((prev) => prev + 1);
       } else {
         setPlayerOnePoint((prev) => prev + 1);
@@ -143,7 +139,7 @@ function Game() {
         setPlayerOnePoint((prev) => prev + 1);
       }
     }
-  },[board , isCpu , currUser , playerOneMark , checkForWin(board)])
+  }, [board, isCpu, currUser, playerOneMark, checkForWin(board)]);
 
   const restartGame = () => {
     const newBoard = generateBoard(3);
@@ -365,7 +361,7 @@ function Game() {
                 )
               </h3>
               <h6 className="heading-s text-dark-navy uppercase">
-                {playerOnePoint}
+                {isCpu && playerOneMark === "o" ? cpuPoint : playerOnePoint}
               </h6>
             </div>
           </div>
