@@ -16,8 +16,6 @@ function Game() {
   const [playerTwoPoint, setPlayerTwoPoint] = useState(0);
   const [ties, setTies] = useState(0);
 
-  console.log("Is Cpu", isCpu);
-
   const handleClick = (r, c) => {
     !board[r][c] && (board[r][c] = currUser === "x" ? <IconX /> : <IconO />);
     setBoard([...board]);
@@ -28,7 +26,7 @@ function Game() {
     }
 
     if (checkTied(board)) {
-      setTies(prev => prev + 1)
+      setTies((prev) => prev + 1);
     }
   };
 
@@ -127,6 +125,117 @@ function Game() {
     return false;
   };
 
+  useEffect(() => {
+    
+    if (isCpu && checkForWin(board)) {
+      if (currUser == playerOneMark) {
+        setCpuPoint((prev) => prev + 1);
+      } else{
+        setPlayerOnePoint(prev =>  prev + 1)
+      }
+    }
+  }, [board, isCpu, currUser, playerOneMark ,checkForWin(board)]);
+  
+
+  // const checkForWin = (board) => {
+  //   //Horizontal
+  //   for (let row of board) {
+  //     let xCount = 0;
+  //     let oCount = 0;
+  //     for (let cell of row) {
+  //       if (cell && cell.type === IconX) {
+  //         xCount++;
+  //       } else if (cell && cell.type === IconO) {
+  //         oCount++;
+  //       }
+  //     }
+  //     if (xCount === row.length) {
+  //       setPlayerOnePoint((prev) => prev + 1);
+  //       return true;
+  //     } else if (oCount === row.length) {
+  //       if (isCpu) {
+  //         if (playerOneMark === "o") {
+  //           setCpuPoint((prev) => prev + 1);
+  //         } else {
+  //           setPlayerTwoPoint((prev) => prev + 1);
+  //         }
+  //       } else {
+  //         setPlayerTwoPoint((prev) => prev + 1);
+  //       }
+  //       return true;
+  //     }
+  //   }
+
+  //   //Vertically
+  //   for (let i = 0; i < board.length; i++) {
+  //     let xCount = 0;
+  //     let oCount = 0;
+  //     for (let j = 0; j < board.length; j++) {
+  //       const cell = board[j][i];
+  //       if (cell && cell.type === IconX) {
+  //         xCount++;
+  //       } else if (cell && cell.type === IconO) {
+  //         oCount++;
+  //       }
+  //     }
+  //     if (xCount === board.length) {
+  //       setPlayerOnePoint((prev) => prev + 1);
+  //       return true;
+  //     } else if (oCount === board.length) {
+  //       if (isCpu) {
+  //         if (playerOneMark === "o") {
+  //           setCpuPoint((prev) => prev + 1);
+  //         } else {
+  //           setPlayerTwoPoint((prev) => prev + 1);
+  //         }
+  //       } else {
+  //         setPlayerTwoPoint((prev) => prev + 1);
+  //       }
+  //       return true;
+  //     }
+  //   }
+
+  //   //Diagonal
+  //   let xCountDiagonal1 = 0;
+  //   let oCountDiagonal1 = 0;
+  //   let xCountDiagonal2 = 0;
+  //   let oCountDiagonal2 = 0;
+  //   for (let i = 0; i < board.length; i++) {
+  //     const cell1 = board[i][i];
+  //     const cell2 = board[i][board.length - i - 1];
+  //     if (cell1 && cell1.type === IconX) {
+  //       xCountDiagonal1++;
+  //     } else if (cell1 && cell1.type === IconO) {
+  //       oCountDiagonal1++;
+  //     }
+  //     if (cell2 && cell2.type === IconX) {
+  //       xCountDiagonal2++;
+  //     } else if (cell2 && cell2.type === IconO) {
+  //       oCountDiagonal2++;
+  //     }
+  //   }
+  //   if (xCountDiagonal1 === board.length || xCountDiagonal2 === board.length) {
+  //     setPlayerOnePoint((prev) => prev + 1);
+  //     return true;
+  //   } else if (
+  //     oCountDiagonal1 === board.length ||
+  //     oCountDiagonal2 === board.length
+  //   ) {
+  //     if (isCpu) {
+  //       if (playerOneMark === "o") {
+  //         setCpuPoint((prev) => prev + 1);
+  //       } else {
+  //         setPlayerTwoPoint((prev) => prev + 1);
+  //       }
+  //     } else {
+  //       setPlayerTwoPoint((prev) => prev + 1);
+  //     }
+  //     return true;
+  //   }
+
+  //   return false;
+  // };
+
   const restartGame = () => {
     const newBoard = generateBoard(3);
     setBoard(newBoard);
@@ -148,21 +257,19 @@ function Game() {
     if (checkTied(board) || checkForWin(board)) {
       setTimeout(() => {
         restartGame();
-      }, 5000000);
+        handleClose();
+      }, 2000);
     }
   });
 
   useEffect(() => {
     if (checkForWin(board)) {
-      console.log(currUser + " wins");
-      console.log(board);
       setIsOpen(true);
     }
   }, [board, currUser]);
 
   useEffect(() => {
     if (checkTied(board)) {
-      console.log("Oyun Berabere");
       setIsOpen(true);
     }
   }, [board]);
@@ -178,8 +285,17 @@ function Game() {
   };
 
   const handleRestart = () => {
+    restartGame();
+    handleClose();
+  };
+
+  const handleReset = () => {
     handleClose();
     restartGame();
+    setTies(0);
+    setCpuPoint(0)
+    setPlayerOnePoint(0);
+    setPlayerTwoPoint(0);
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-dark-navy relative">
@@ -358,7 +474,7 @@ function Game() {
                     No,Cancel
                   </button>
                   <button
-                    onClick={handleRestart}
+                    onClick={handleReset}
                     className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
                   >
                     Yes, Restart
@@ -465,7 +581,7 @@ function Game() {
                       : "Player 2 Wins!"}
                   </h3>
                   <div className="flex gap-6 items-center">
-                    {playerOneMark !== "x" ? (
+                    {currUser !== playerOneMark ? (
                       <>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
