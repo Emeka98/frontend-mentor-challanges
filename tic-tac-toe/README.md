@@ -1,6 +1,6 @@
 # Frontend Mentor - Tic Tac Toe solution
 
-This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -10,8 +10,6 @@ This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Author](#author)
-
-
 
 ## Overview
 
@@ -25,8 +23,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution URL here](https://github.com/unaygney/frontend-mentor-challanges/tree/main/tic-tac-toe)
+- Live Site URL: [Live site URL here](https://tictactoegameee.netlify.app/)
 
 ## My process
 
@@ -41,5 +39,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.guneyunay.com)
+- Website - [Personal Website](https://www.guneyunay.com)
 - Frontend Mentor - [@unaygney](https://www.frontendmentor.io/profile/unaygney)
