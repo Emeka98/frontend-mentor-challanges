@@ -126,115 +126,24 @@ function Game() {
   };
 
   useEffect(() => {
-    
     if (isCpu && checkForWin(board)) {
       if (currUser == playerOneMark) {
         setCpuPoint((prev) => prev + 1);
-      } else{
-        setPlayerOnePoint(prev =>  prev + 1)
+      } else {
+        setPlayerOnePoint((prev) => prev + 1);
       }
     }
-  }, [board, isCpu, currUser, playerOneMark ,checkForWin(board)]);
-  
+  }, [board, isCpu, currUser, playerOneMark, checkForWin(board)]);
 
-  // const checkForWin = (board) => {
-  //   //Horizontal
-  //   for (let row of board) {
-  //     let xCount = 0;
-  //     let oCount = 0;
-  //     for (let cell of row) {
-  //       if (cell && cell.type === IconX) {
-  //         xCount++;
-  //       } else if (cell && cell.type === IconO) {
-  //         oCount++;
-  //       }
-  //     }
-  //     if (xCount === row.length) {
-  //       setPlayerOnePoint((prev) => prev + 1);
-  //       return true;
-  //     } else if (oCount === row.length) {
-  //       if (isCpu) {
-  //         if (playerOneMark === "o") {
-  //           setCpuPoint((prev) => prev + 1);
-  //         } else {
-  //           setPlayerTwoPoint((prev) => prev + 1);
-  //         }
-  //       } else {
-  //         setPlayerTwoPoint((prev) => prev + 1);
-  //       }
-  //       return true;
-  //     }
-  //   }
-
-  //   //Vertically
-  //   for (let i = 0; i < board.length; i++) {
-  //     let xCount = 0;
-  //     let oCount = 0;
-  //     for (let j = 0; j < board.length; j++) {
-  //       const cell = board[j][i];
-  //       if (cell && cell.type === IconX) {
-  //         xCount++;
-  //       } else if (cell && cell.type === IconO) {
-  //         oCount++;
-  //       }
-  //     }
-  //     if (xCount === board.length) {
-  //       setPlayerOnePoint((prev) => prev + 1);
-  //       return true;
-  //     } else if (oCount === board.length) {
-  //       if (isCpu) {
-  //         if (playerOneMark === "o") {
-  //           setCpuPoint((prev) => prev + 1);
-  //         } else {
-  //           setPlayerTwoPoint((prev) => prev + 1);
-  //         }
-  //       } else {
-  //         setPlayerTwoPoint((prev) => prev + 1);
-  //       }
-  //       return true;
-  //     }
-  //   }
-
-  //   //Diagonal
-  //   let xCountDiagonal1 = 0;
-  //   let oCountDiagonal1 = 0;
-  //   let xCountDiagonal2 = 0;
-  //   let oCountDiagonal2 = 0;
-  //   for (let i = 0; i < board.length; i++) {
-  //     const cell1 = board[i][i];
-  //     const cell2 = board[i][board.length - i - 1];
-  //     if (cell1 && cell1.type === IconX) {
-  //       xCountDiagonal1++;
-  //     } else if (cell1 && cell1.type === IconO) {
-  //       oCountDiagonal1++;
-  //     }
-  //     if (cell2 && cell2.type === IconX) {
-  //       xCountDiagonal2++;
-  //     } else if (cell2 && cell2.type === IconO) {
-  //       oCountDiagonal2++;
-  //     }
-  //   }
-  //   if (xCountDiagonal1 === board.length || xCountDiagonal2 === board.length) {
-  //     setPlayerOnePoint((prev) => prev + 1);
-  //     return true;
-  //   } else if (
-  //     oCountDiagonal1 === board.length ||
-  //     oCountDiagonal2 === board.length
-  //   ) {
-  //     if (isCpu) {
-  //       if (playerOneMark === "o") {
-  //         setCpuPoint((prev) => prev + 1);
-  //       } else {
-  //         setPlayerTwoPoint((prev) => prev + 1);
-  //       }
-  //     } else {
-  //       setPlayerTwoPoint((prev) => prev + 1);
-  //     }
-  //     return true;
-  //   }
-
-  //   return false;
-  // };
+  useEffect(() => {
+    if (!isCpu && checkForWin(board)) {
+      if (playerOneMark == currUser) {
+        setPlayerTwoPoint((prev) => prev + 1);
+      } else {
+        setPlayerOnePoint((prev) => prev + 1);
+      }
+    }
+  },[board , isCpu , currUser , playerOneMark , checkForWin(board)])
 
   const restartGame = () => {
     const newBoard = generateBoard(3);
@@ -293,7 +202,7 @@ function Game() {
     handleClose();
     restartGame();
     setTies(0);
-    setCpuPoint(0)
+    setCpuPoint(0);
     setPlayerOnePoint(0);
     setPlayerTwoPoint(0);
   };
@@ -422,17 +331,18 @@ function Game() {
         <div className="flex  gap-5 mt-5">
           <div className="flex-1 flex justify-center items-center h-16 bg-light-blue rounded-[10px]">
             <div className="h-full w-full  flex flex-col items-center justify-center ">
-              <h3 className="custom-text text-dark-navy uppercase text-[12px] ">
+              <h3 className="custom-text text-dark-navy uppercase text-[12px]">
                 X(
                 {isCpu && playerOneMark === "x"
                   ? "YOU"
-                  : "CPU" || (!isCpu && "P2")}
+                  : isCpu
+                  ? "CPU"
+                  : !isCpu && "P2"}
                 )
               </h3>
               <h6 className="heading-s text-dark-navy uppercase">
                 {isCpu ? cpuPoint : playerTwoPoint}
               </h6>
-              {/* CPU or P2*/}
             </div>
           </div>
           <div className="flex-1 h-16 bg-silver rounded-[10px] ">
@@ -449,7 +359,9 @@ function Game() {
                 O(
                 {isCpu && playerOneMark === "o"
                   ? "YOU"
-                  : "CPU" || (!isCpu && "P1")}
+                  : isCpu
+                  ? "CPU"
+                  : !isCpu && "P1"}
                 )
               </h3>
               <h6 className="heading-s text-dark-navy uppercase">
