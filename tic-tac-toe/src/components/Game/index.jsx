@@ -11,6 +11,10 @@ function Game() {
   const [board, setBoard] = useState(generateBoard(3));
   const [isOpen, setIsOpen] = useState(false);
   const [isRestart, setIsRestart] = useState(false);
+  const [cpuPoint, setCpuPoint] = useState(0);
+  const [playerOnePoint, setPlayerOnePoint] = useState(0);
+  const [playerTwoPoint, setPlayerTwoPoint] = useState(0);
+  const [ties, setTies] = useState(0);
 
   console.log("Is Cpu", isCpu);
 
@@ -24,7 +28,7 @@ function Game() {
     }
 
     if (checkTied(board)) {
-      console.log("Oyun Berabere");
+      setTies(prev => prev + 1)
     }
   };
 
@@ -184,7 +188,9 @@ function Game() {
         {/* Top Bar */}
         <div className="flex flex-row mb-16 justify-between">
           <div>
-            <img src={Logo} alt="logo" />
+            <Link to={"/"}>
+              <img src={Logo} alt="logo" />
+            </Link>
           </div>
           <div className="w-[96px] h-10 bg-semi-dark-navy text-silver flex justify-center items-center gap-[9px] shadow-custom-turn rounded-md p-4">
             {currUser === "x" ? (
@@ -307,7 +313,10 @@ function Game() {
                   : "CPU" || (!isCpu && "P2")}
                 )
               </h3>
-              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+              <h6 className="heading-s text-dark-navy uppercase">
+                {isCpu ? cpuPoint : playerTwoPoint}
+              </h6>
+              {/* CPU or P2*/}
             </div>
           </div>
           <div className="flex-1 h-16 bg-silver rounded-[10px] ">
@@ -315,7 +324,7 @@ function Game() {
               <h3 className="custom-text text-dark-navy uppercase text-[12px]">
                 Ties
               </h3>
-              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+              <h6 className="heading-s text-dark-navy uppercase">{ties}</h6>
             </div>
           </div>
           <div className="flex-1 h-16 bg-light-yellow rounded-[10px] ">
@@ -327,7 +336,9 @@ function Game() {
                   : "CPU" || (!isCpu && "P1")}
                 )
               </h3>
-              <h6 className="heading-s text-dark-navy uppercase">14</h6>
+              <h6 className="heading-s text-dark-navy uppercase">
+                {playerOnePoint}
+              </h6>
             </div>
           </div>
         </div>
@@ -380,28 +391,56 @@ function Game() {
               (isCpu ? (
                 <div className="flex flex-col items-center justify-center gap-6">
                   {currUser !== playerOneMark ? (
-                    <h3 className="custom-text uppercase font-bold mt-5">You Won!</h3>
+                    <h3 className="custom-text uppercase font-bold mt-5">
+                      You Won!
+                    </h3>
                   ) : (
-                    <h3 className="custom-text uppercase font-bold mt-5">Oh No,You lost...</h3>
+                    <h3 className="custom-text uppercase font-bold mt-5">
+                      Oh No,You lost...
+                    </h3>
                   )}
                   <div className="flex gap-6 items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="64"
-                      height="64"
-                      viewBox="0 0 64 64"
-                      fill="none"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32ZM18.963 32C18.963 24.7998 24.7998 18.963 32 18.963C39.2002 18.963 45.037 24.7998 45.037 32C45.037 39.2002 39.2002 45.037 32 45.037C24.7998 45.037 18.963 39.2002 18.963 32Z"
-                        fill="#F2B137"
-                      />
-                    </svg>
-                    <h3 className="heading-m text-light-yellow">
-                      Takes the round
-                    </h3>
+                    {currUser !== playerOneMark ? (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="64"
+                          height="64"
+                          viewBox="0 0 64 64"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32ZM18.963 32C18.963 24.7998 24.7998 18.963 32 18.963C39.2002 18.963 45.037 24.7998 45.037 32C45.037 39.2002 39.2002 45.037 32 45.037C24.7998 45.037 18.963 39.2002 18.963 32Z"
+                            fill="#F2B137"
+                          />
+                        </svg>
+                        <h3 className="heading-m text-light-yellow">
+                          Takes the round
+                        </h3>
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="28"
+                          height="28"
+                          viewBox="0 0 28 28"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M27.6123 4.62852L23.3715 0.387678C22.8546 -0.129226 22.0165 -0.129226 21.4996 0.387678L14 7.88729L6.50039 0.387678C5.98349 -0.129226 5.14542 -0.129226 4.62852 0.387678L0.387678 4.62852C-0.129226 5.14542 -0.129226 5.98349 0.387678 6.50039L7.88729 14L0.387678 21.4996C-0.129226 22.0165 -0.129226 22.8546 0.387678 23.3715L4.62852 27.6123C5.14542 28.1292 5.98349 28.1292 6.50039 27.6123L14 20.1127L21.4996 27.6123C22.0165 28.1292 22.8546 28.1292 23.3715 27.6123L27.6123 23.3715C28.1292 22.8546 28.1292 22.0165 27.6123 21.4996L20.1127 14L27.6123 6.50039C28.1292 5.98349 28.1292 5.14542 27.6123 4.62852Z"
+                            fill="#31C3BD"
+                          />
+                        </svg>
+                        <h3 className="heading-m text-light-blue">
+                          Takes the round
+                        </h3>
+                      </>
+                    )}
                   </div>
                   <div className="flex gap-4 items-center justify-center">
                     <Link
@@ -419,7 +458,71 @@ function Game() {
                   </div>
                 </div>
               ) : (
-                <div>Oyunu birisi kazandı</div>
+                <div className="flex flex-col justify-center items-center gap-6">
+                  <h3 className="custom-text uppercase font-bold mt-5">
+                    {playerOneMark === "x"
+                      ? "Player 1 Wins!"
+                      : "Player 2 Wins!"}
+                  </h3>
+                  <div className="flex gap-6 items-center">
+                    {playerOneMark !== "x" ? (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="64"
+                          height="64"
+                          viewBox="0 0 64 64"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32ZM18.963 32C18.963 24.7998 24.7998 18.963 32 18.963C39.2002 18.963 45.037 24.7998 45.037 32C45.037 39.2002 39.2002 45.037 32 45.037C24.7998 45.037 18.963 39.2002 18.963 32Z"
+                            fill="#F2B137"
+                          />
+                        </svg>
+                        <h3 className="heading-m text-light-yellow">
+                          Takes the round
+                        </h3>
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="28"
+                          height="28"
+                          viewBox="0 0 28 28"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M27.6123 4.62852L23.3715 0.387678C22.8546 -0.129226 22.0165 -0.129226 21.4996 0.387678L14 7.88729L6.50039 0.387678C5.98349 -0.129226 5.14542 -0.129226 4.62852 0.387678L0.387678 4.62852C-0.129226 5.14542 -0.129226 5.98349 0.387678 6.50039L7.88729 14L0.387678 21.4996C-0.129226 22.0165 -0.129226 22.8546 0.387678 23.3715L4.62852 27.6123C5.14542 28.1292 5.98349 28.1292 6.50039 27.6123L14 20.1127L21.4996 27.6123C22.0165 28.1292 22.8546 28.1292 23.3715 27.6123L27.6123 23.3715C28.1292 22.8546 28.1292 22.0165 27.6123 21.4996L20.1127 14L27.6123 6.50039C28.1292 5.98349 28.1292 5.14542 27.6123 4.62852Z"
+                            fill="#31C3BD"
+                          />
+                        </svg>
+                        <h3 className="heading-m text-light-blue">
+                          Takes the round
+                        </h3>
+                      </>
+                    )}
+                  </div>
+
+                  <div className="flex gap-4 items-center justify-center">
+                    <Link
+                      to={"/"}
+                      className="w-[139px] h-[52px] flex-shrink-0 inline-flex justify-center items-center rounded-[10px] bg-silver hover:bg-silver-hover shadow-custom-cancel text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                    >
+                      Quit
+                    </Link>
+                    <button
+                      onClick={handleRestart}
+                      className="w-[151px] h-[52px] flex-shrink-0 rounded-[10px] bg-light-yellow hover:bg-light-yellow-hover shadow-custom-restart text-dark-navy text-[16px] tracking-[1px] font-bold uppercase "
+                    >
+                      Next Round
+                    </button>
+                  </div>
+                </div>
               ))}
           </div>
         )}
