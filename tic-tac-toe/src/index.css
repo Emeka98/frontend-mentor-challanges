@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .heading-l {
+    @apply text-silver text-[40px] font-bold leading-normal tracking-[2.5px] uppercase;
+  }
+  .heading-m {
+    @apply text-silver text-[24px] font-bold leading-normal tracking-[1.5px] uppercase;
+  }
+  .heading-s {
+    @apply text-silver text-[20px] font-bold leading-normal tracking-[1.25px] uppercase;
+  }
+  .heading-xs {
+    @apply text-silver text-[16px] font-bold leading-normal tracking-[1px] uppercase;
+  }
+  .custom-text {
+    @apply text-silver text-sm font-medium leading-normal tracking-[0.875px];
+  }
+}

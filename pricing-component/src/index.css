@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.before::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/bg-top.svg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.after::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/bg-bottom.svg");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+@media (max-width: 640px) {
+  .before::before {
+    top: -20px;
+    right: -200px;
+  }
+
+  .after::after {
+    display: none;
+  }
+}

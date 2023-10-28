@@ -1,0 +1,234 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #14131b 0%, #08070b 100%);
+  color: $almost-white;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 32px;
+  height: 65px;
+  cursor: pointer;
+  color: $dark-grey;
+  font-size: 18px;
+  background-color: $neon-green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: transparent;
+    color: $neon-green;
+    border: 2px solid $neon-green;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 540px;
+
+  h1 {
+    color: $grey;
+    margin-bottom: 32px;
+  }
+
+  .show-input {
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+    background-color: $dark-grey;
+
+    input {
+      width: calc(100% - 96px);
+      padding: 19px 64px 19px 32px;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      color: $almost-white;
+      font-size: 32px;
+    }
+
+    button {
+      position: absolute;
+      background-color: transparent;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+
+  form {
+    width: calc(100% - 64px);
+    padding: 24px 32px;
+    background-color: $dark-grey;
+
+    .form-control {
+      label {
+        font-size: 18px;
+      }
+      input[type="range"] {
+        width: 100%;
+        height: 8px;
+        accent-color: $neon-green;
+        cursor: pointer;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
+      &:not(:first-child) {
+        label {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+      }
+
+      .label-data {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .length {
+          font-size: 18px;
+          font-weight: 700;
+          color: $almost-white;
+        }
+
+        .length-number {
+          font-size: 32px;
+          color: $neon-green;
+        }
+      }
+    }
+
+    .show-strength {
+      background-color: $very-dark-grey;
+      padding: 25px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .strength-level {
+        font-size: 18px;
+        color: $grey;
+      }
+
+      .strength-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        h5 {
+          margin-right: 16px;
+          font-size: 24px;
+        }
+
+        .strength {
+          width: 10px;
+          height: 28px;
+          border: 1px solid white;
+          background-color: transparent;
+
+          &.active-1 {
+            background-color: $neon-green;
+            &.active-2 {
+              background-color: $neon-green;
+              &.active-3 {
+                background-color: $neon-green;
+                &.active-4 {
+                  background-color: $neon-green;
+                }
+              }
+            }
+          }
+
+          &.active-1 {
+            background-color: $yellow;
+            &.active-2 {
+              background-color: $yellow;
+              &.active-3 {
+                background-color: $yellow;
+              }
+            }
+          }
+
+          &.active-1 {
+            background-color: $orange;
+            &.active-2 {
+              background-color: $orange;
+            }
+          }
+
+          &.active-1 {
+            background-color: $red;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 478px) {
+  .container {
+    width: 310px;
+    margin: 10px;
+
+    h1 {
+      font-size: 16px;
+    }
+    .show-input {
+      input {
+        padding: 19px 12px;
+      }
+    }
+
+    form {
+      width: calc(100% - 32px);
+      padding: 21px 16px;
+
+      .form-control {
+        label {
+          font-size: 16px;
+        }
+
+        &:not(:first-child) {
+          label {
+            gap: 15px;
+          }
+        }
+      }
+
+      .show-strength {
+        padding: 17px;
+
+        .strength-level {
+          font-size: 16px;
+        }
+
+        .strength-container {
+          h5 {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
