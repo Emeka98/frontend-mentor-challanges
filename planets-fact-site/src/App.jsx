@@ -1,7 +1,9 @@
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
-    <div className="bg-black min-h-screen w-full bg-stars">
-      <p className="heading-xs">test</p>
+    <div className="bg-dark-blue min-h-screen w-full bg-stars">
+<Navbar/>
     </div>
   );
 }

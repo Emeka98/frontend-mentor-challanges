@@ -54,4 +54,26 @@
     font-weight: 400;
     line-height: 25px;
   }
+
+  .logo {
+    color: #fff;
+    font-family: Antonio;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -1.05px;
+    text-transform: uppercase;
+  }
+
+  .nav-text {
+    color: #fff;
+    font-family: Spartan;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px; /* 166.667% */
+    letter-spacing: 1.364px;
+    text-transform: uppercase;
+  }
 }
