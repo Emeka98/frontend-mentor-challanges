@@ -16,6 +16,13 @@ export default {
         turq: "#1EC1A2",
         "royal-blue": "#2D68F0",
       },
+      backgroundImage: {
+        stars: "url(/src/assets/background-stars.svg)",
+      },
+      fontFamily: {
+        antonio: ["Antonio", "sans-serif"],
+        spartan: ["Spartan", "sans-serif"],
+      },
     },
   },
   plugins: [],

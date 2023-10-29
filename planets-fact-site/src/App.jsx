@@ -1,8 +1,8 @@
 function App() {
   return (
-    <>
-      <p className="text-dark-blue">test</p>
-    </>
+    <div className="bg-black min-h-screen w-full bg-stars">
+      <p className="text-white font-antonio">test</p>
+    </div>
   );
 }
 
