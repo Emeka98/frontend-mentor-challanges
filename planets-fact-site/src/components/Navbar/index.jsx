@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import 'animate.css'
+import "animate.css";
 import HamburgerImage from "./Images/HamburgerImage";
 import ArrowImage from "./Images/ArrorImage";
 import { constant } from "./constant";
@@ -9,13 +9,25 @@ function Navbar() {
   console.log(isActive);
   return (
     <>
-      <div className="w-full h-[68px] border-b border-[#ffffff40] flex  items-center justify-between px-6 relative">
+      <div className="w-full h-[68px] md:h-[159px] lg:h-[85px] border-b border-[#ffffff40] flex  items-center justify-between px-6 relative md:flex-col lg:flex-row ">
         {/* Logo */}
-        <div>
+        <div className="md:pt-8 lg:pt-0">
           <a className="logo">The Planets</a>
         </div>
 
-        <button onClick={() => setIsActive(!isActive)}>
+        {/* Tablet and Desktop Navbar */}
+        <nav className="  ">
+          <ul className="flex gap-8 justify-center lg:justify-end pb-7 lg:pb-0 ">
+            {constant.map((item, i) => (
+              <li className="nav-text-tablet " key={item.id}>
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Hamburger Btn */}
+        <button className="md:hidden" onClick={() => setIsActive(!isActive)}>
           <HamburgerImage />
         </button>
       </div>
