@@ -16,8 +16,8 @@ function Navbar() {
         </div>
 
         {/* Tablet and Desktop Navbar */}
-        <nav className="  ">
-          <ul className="flex gap-8 justify-center lg:justify-end pb-7 lg:pb-0 ">
+        <nav className=" hidden md:block  ">
+          <ul className="flex gap-8 justify-center lg:justify-end pb-7 lg:pb-0  ">
             {constant.map((item, i) => (
               <li className="nav-text-tablet " key={item.id}>
                 {item.title}
