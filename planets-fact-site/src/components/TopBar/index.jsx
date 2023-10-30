@@ -3,7 +3,7 @@ import { constant } from "./constant";
 
 function TopBar() {
   return (
-    <div className="border-b border-[#ffffff40] w-full px-6 pt-5 pb-[17px] flex justify-between ">
+    <div className="border-b border-[#ffffff40] w-full px-6 pt-5 pb-[17px]  flex md:hidden justify-between ">
       {constant.map((item, i) => (
         <button
           key={item.id}

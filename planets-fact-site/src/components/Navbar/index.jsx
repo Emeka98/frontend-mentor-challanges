@@ -34,7 +34,7 @@ function Navbar() {
 
       {/* Navbar mobile */}
       <nav
-        className={` left-0  bottom-0 top-[68px] right-0 bg-dark-blue animate__animated animate__fadeInDown  ${
+        className={` left-0  bottom-0 top-[68px] z-50 right-0 bg-dark-blue animate__animated animate__fadeInDown  ${
           isActive ? "absolute" : "hidden"
         }`}
       >
