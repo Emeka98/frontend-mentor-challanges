@@ -4,8 +4,10 @@ import TopBar from "../TopBar";
 import { useData } from "../../context/DataContext";
 
 function Main() {
-const context = useData()
-console.log(context)
+  const { planet, planetImage, setPlanetImage } = useData();
+  const currentPlanet = data[planet];
+  const currentPlanetImage = data[planet].images[planetImage];
+
   return (
     <main className="px-6 lg:container lg:mx-auto ">
       {/* For Mobile Top Bar */}
@@ -14,16 +16,20 @@ console.log(context)
       {/* Image */}
       <div className="lg:flex lg:flex-row lg:items-center">
         <div className="w-full flex justify-center mt-24 md:mt-[146px] l ">
-          <div className="w-[111px] h-[111px] md:w-[184px] md:h-[184px] lg:w-[290px] lg:h-[290px]">
-            <img src={data[0].images.planet} alt={`${data[0].name} image`} />
+          <div className="w-[111px] h-[111px] md:w-[184px] md:h-[184px] lg:w-[450px] lg:h-[450px]">
+            <img
+              className="w-full h-full block"
+              src={currentPlanetImage}
+              alt={`${currentPlanet.name} image`}
+            />
           </div>
         </div>
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row lg:w-[350px] lg:flex-col gap-24 md:gap-[69px] lg:gap-6 w-full items-center mt-24 md:mt-[146px] lg:mt-20  ">
+        <div className="flex flex-col md:flex-row lg:w-[400px] lg:flex-col gap-24 md:gap-[69px] lg:gap-6 w-full items-center mt-24 md:mt-[146px] lg:mt-20  ">
           <div className="flex flex-col flex-1  items-center md:items-start ">
-            <h1 className="heading-m mb-4 ">{data[0].name}</h1>
+            <h1 className="heading-m mb-4 ">{currentPlanet.name}</h1>
             <p className="custom-text text-center md:text-start leading-6 opacity-60">
-              {data[0].overview.content}
+              {currentPlanet.overview.content}
             </p>
             <div className="flex gap-1 mt-8 ">
               <p className="custom-text text-center leading-6 opacity-60">
@@ -31,7 +37,7 @@ console.log(context)
               </p>
               <a
                 className="custom-text text-center  leading-6 opacity-60 underline inline-flex items-center gap-1"
-                href={data[0].overview.source}
+                href={currentPlanet.overview.source}
               >
                 Wikipedia{" "}
                 <svg
@@ -57,7 +63,10 @@ console.log(context)
 
           {/* Buttons For Desktop and Tablet  */}
           <div className="flex-1 max-w-[281px] lg:w-full flex-col gap-4 hidden md:flex">
-            <button className="w-full px-5  h-10 gap-4 inline-flex items-center border border-[#ffffff40]">
+            <button
+              onClick={() => setPlanetImage("planet")}
+              className="w-full px-5  h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
+            >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
                 01
               </span>
@@ -65,7 +74,10 @@ console.log(context)
                 Overview
               </h3>
             </button>
-            <button className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]">
+            <button
+              onClick={() => setPlanetImage("internal")}
+              className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
+            >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
                 02
               </span>
@@ -73,7 +85,10 @@ console.log(context)
                 Internal Structure
               </h3>
             </button>
-            <button className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]">
+            <button
+              onClick={() => setPlanetImage("geology")}
+              className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
+            >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
                 03
               </span>
@@ -91,28 +106,28 @@ console.log(context)
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Rotation Time
           </h3>
-          <h4 className="info-heading">{data[0].rotation}</h4>
+          <h4 className="info-heading lg:heading-m">{currentPlanet.rotation}</h4>
         </div>
 
         <div className="w-full h-12 md:h-[88px] border border-[#ffffff40] flex items-center justify-between  md:flex-col md:items-start md:justify-start px-6  md:py-4 ">
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Revolution Time
           </h3>
-          <h4 className="info-heading">{data[0].revolution}</h4>
+          <h4 className="info-heading lg:heading-m">{currentPlanet.revolution}</h4>
         </div>
 
         <div className="w-full h-12 md:h-[88px] border border-[#ffffff40] flex items-center justify-between  md:flex-col md:items-start md:justify-start px-6  md:py-4 ">
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Radius
           </h3>
-          <h4 className="info-heading">{data[0].radius}</h4>
+          <h4 className="info-heading lg:heading-m">{currentPlanet.radius}</h4>
         </div>
 
         <div className="w-full h-12 md:h-[88px] border border-[#ffffff40] flex items-center justify-between  md:flex-col md:items-start md:justify-start px-6  md:py-4 ">
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Average Temp.
           </h3>
-          <h4 className="info-heading">{data[0].temperature}</h4>
+          <h4 className="info-heading lg:heading-m">{currentPlanet.temperature}</h4>
         </div>
       </div>
     </main>

@@ -1,9 +1,19 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
-  const contextData = "Güney";
+  const [planet, setPlanet] = useState(0);
+  const [planetImage, setPlanetImage] = useState("planet");
+  const contextData = useMemo(
+    () => ({
+      planet,
+      setPlanet,
+      planetImage,
+      setPlanetImage,
+    }),
+    [planet, setPlanet, planetImage, setPlanetImage]
+  );
   return (
     <DataContext.Provider value={contextData}>{children}</DataContext.Provider>
   );

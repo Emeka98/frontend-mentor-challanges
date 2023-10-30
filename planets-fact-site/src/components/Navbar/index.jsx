@@ -3,10 +3,16 @@ import "animate.css";
 import HamburgerImage from "./Images/HamburgerImage";
 import ArrowImage from "./Images/ArrorImage";
 import { constant } from "./constant";
+import { useData } from "../../context/DataContext";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
-  console.log(isActive);
+  const { setPlanet } = useData();
+
+  const handleClick = (e, id) => {
+    setIsActive(false);
+    setPlanet(id);
+  };
   return (
     <>
       <div className="w-full h-[68px] md:h-[159px] lg:h-[85px] border-b border-[#ffffff40] flex  items-center justify-between px-6 relative md:flex-col lg:flex-row ">
@@ -19,8 +25,13 @@ function Navbar() {
         <nav className=" hidden md:block  ">
           <ul className="flex gap-8 justify-center lg:justify-end pb-7 lg:pb-0  ">
             {constant.map((item, i) => (
-              <li className="nav-text-tablet " key={item.id}>
-                {item.title}
+              <li key={item.id}>
+                <button
+                  onClick={() => setPlanet(item.id)}
+                  className="nav-text-tablet "
+                >
+                  {item.title}
+                </button>
               </li>
             ))}
           </ul>
@@ -48,13 +59,16 @@ function Navbar() {
               }`}
               key={item.id}
             >
-              <div className="flex  items-center gap-6">
+              <button
+                onClick={(e) => handleClick(e, item.id)}
+                className="inline-flex  items-center gap-6"
+              >
                 <span
                   className="w-5 h-5 block rounded-full"
                   style={{ background: item["bg-color"] }}
                 ></span>
                 <h3 className="nav-text">{item.title}</h3>
-              </div>
+              </button>
 
               <ArrowImage />
             </li>
