@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import data from "../../../data.json";
 import TopBar from "../TopBar";
 import { useData } from "../../context/DataContext";
+import { constant } from "./constant";
 
 function Main() {
   const { planet, planetImage, setPlanetImage, setPlanetInfo, planetInfo } =
     useData();
+  const colors = [
+    "#419EBB",
+    "#EDA249",
+    "#6D2ED5",
+    "#D14C32",
+    "#D83A34",
+    "#CD5120",
+    "#1EC1A2",
+    "#2D68F0",
+  ];
+  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const currentPlanet = data[planet];
   const currentPlanetImage = data[planet].images[planetImage];
   const currentPlanetInfo = data[planet][planetInfo].content;
 
-  console.log(currentPlanetImage);
+  const handleClick = (e, idx) => {
+    if (idx === 0) {
+      setPlanetImage("planet");
+      setPlanetInfo("overview");
+    } else if (idx === 1) {
+      setPlanetImage("internal");
+      setPlanetInfo("structure");
+    } else {
+      setPlanetImage("geology");
+      setPlanetInfo("geology");
+    }
+  };
 
   return (
     <main className="px-6 lg:container lg:mx-auto ">
@@ -67,45 +90,23 @@ function Main() {
 
           {/* Buttons For Desktop and Tablet  */}
           <div className="flex-1 max-w-[281px] lg:w-full flex-col gap-4 hidden md:flex">
-            <button
-              onClick={() => {
-                setPlanetImage("planet"), setPlanetInfo("overview");
-              }}
-              className="w-full px-5  h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
-            >
-              <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                01
-              </span>
-              <h3 className="text-white font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                Overview
-              </h3>
-            </button>
-            <button
-              onClick={() => {
-                setPlanetImage("internal"), setPlanetInfo("structure");
-              }}
-              className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
-            >
-              <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                02
-              </span>
-              <h3 className="text-white font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                Internal Structure
-              </h3>
-            </button>
-            <button
-              onClick={() => {
-                setPlanetImage("geology"), setPlanetInfo("geology");
-              }}
-              className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
-            >
-              <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                03
-              </span>
-              <h3 className="text-white font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
-                Surface Geology
-              </h3>
-            </button>
+            {constant.map((item, i) => (
+              <button
+                onClick={(e) => {
+                  handleClick(e, i), setActiveButtonIndex(i);
+                }}
+                className={`w-full px-5 h-10 gap-4 inline-flex items-center border`}
+                style={{ backgroundColor: activeButtonIndex === i ? colors[planet] : '' }}
+                key={item.id}
+              >
+                <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
+                  {item.number}
+                </span>
+                <h3 className="text-white font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
+                  {item.title}
+                </h3>
+              </button>
+            ))}
           </div>
         </div>
       </div>
