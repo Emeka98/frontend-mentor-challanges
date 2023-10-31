@@ -4,9 +4,13 @@ import TopBar from "../TopBar";
 import { useData } from "../../context/DataContext";
 
 function Main() {
-  const { planet, planetImage, setPlanetImage } = useData();
+  const { planet, planetImage, setPlanetImage, setPlanetInfo, planetInfo } =
+    useData();
   const currentPlanet = data[planet];
   const currentPlanetImage = data[planet].images[planetImage];
+  const currentPlanetInfo = data[planet][planetInfo].content;
+
+  console.log(currentPlanetImage);
 
   return (
     <main className="px-6 lg:container lg:mx-auto ">
@@ -29,7 +33,7 @@ function Main() {
           <div className="flex flex-col flex-1  items-center md:items-start ">
             <h1 className="heading-m mb-4 ">{currentPlanet.name}</h1>
             <p className="custom-text text-center md:text-start leading-6 opacity-60">
-              {currentPlanet.overview.content}
+              {currentPlanetInfo}
             </p>
             <div className="flex gap-1 mt-8 ">
               <p className="custom-text text-center leading-6 opacity-60">
@@ -64,7 +68,9 @@ function Main() {
           {/* Buttons For Desktop and Tablet  */}
           <div className="flex-1 max-w-[281px] lg:w-full flex-col gap-4 hidden md:flex">
             <button
-              onClick={() => setPlanetImage("planet")}
+              onClick={() => {
+                setPlanetImage("planet"), setPlanetInfo("overview");
+              }}
               className="w-full px-5  h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
             >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
@@ -75,7 +81,9 @@ function Main() {
               </h3>
             </button>
             <button
-              onClick={() => setPlanetImage("internal")}
+              onClick={() => {
+                setPlanetImage("internal"), setPlanetInfo("structure");
+              }}
               className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
             >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
@@ -86,7 +94,9 @@ function Main() {
               </h3>
             </button>
             <button
-              onClick={() => setPlanetImage("geology")}
+              onClick={() => {
+                setPlanetImage("geology"), setPlanetInfo("geology");
+              }}
               className="w-full px-5 h-10 gap-4 inline-flex items-center border border-[#ffffff40]"
             >
               <span className="text-white opacity-50 font-spartan text-[9px] font-bold leading-6 tracking-[1.929px] uppercase">
@@ -106,14 +116,18 @@ function Main() {
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Rotation Time
           </h3>
-          <h4 className="info-heading lg:heading-m">{currentPlanet.rotation}</h4>
+          <h4 className="info-heading lg:heading-m">
+            {currentPlanet.rotation}
+          </h4>
         </div>
 
         <div className="w-full h-12 md:h-[88px] border border-[#ffffff40] flex items-center justify-between  md:flex-col md:items-start md:justify-start px-6  md:py-4 ">
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Revolution Time
           </h3>
-          <h4 className="info-heading lg:heading-m">{currentPlanet.revolution}</h4>
+          <h4 className="info-heading lg:heading-m">
+            {currentPlanet.revolution}
+          </h4>
         </div>
 
         <div className="w-full h-12 md:h-[88px] border border-[#ffffff40] flex items-center justify-between  md:flex-col md:items-start md:justify-start px-6  md:py-4 ">
@@ -127,7 +141,9 @@ function Main() {
           <h3 className="text-white leading-4 tracking-[0.727px] text-[12px] font-spartan font-bold opacity-60 uppercase">
             Average Temp.
           </h3>
-          <h4 className="info-heading lg:heading-m">{currentPlanet.temperature}</h4>
+          <h4 className="info-heading lg:heading-m">
+            {currentPlanet.temperature}
+          </h4>
         </div>
       </div>
     </main>

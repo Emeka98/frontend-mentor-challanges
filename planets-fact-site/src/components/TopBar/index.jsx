@@ -3,16 +3,19 @@ import { constant } from "./constant";
 import { useData } from "../../context/DataContext";
 
 function TopBar() {
-  const { setPlanetImage } = useData();
+  const { setPlanetImage, setPlanetInfo } = useData();
 
   const handleClick = (e, idx) => {
-   if(idx === 0){
-    setPlanetImage('planet')
-   } else if (idx === 1){
-    setPlanetImage('internal')
-   } else {
-    setPlanetImage('geology')
-   }
+    if (idx === 0) {
+      setPlanetImage("planet");
+      setPlanetInfo("overview");
+    } else if (idx === 1) {
+      setPlanetImage("internal");
+      setPlanetInfo("structure");
+    } else {
+      setPlanetImage("geology");
+      setPlanetInfo("geology");
+    }
   };
 
   return (
