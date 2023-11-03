@@ -9,7 +9,7 @@ function Toggle() {
   return (
     <>
       <div className="flex items-center gap-1">
-        <BiMoon className="fill-black-500" />
+        <BiMoon onClick={() => setTheme(!theme)} className="fill-black-500" />
         <Switch
           checked={theme}
           onChange={setTheme}
@@ -24,7 +24,7 @@ function Toggle() {
             } inline-block h-3 w-3 transform rounded-full bg-white transition`}
           />
         </Switch>
-        <BiSun className="fill-black-500" />
+        <BiSun onClick={() => setTheme(!theme)} className="fill-black-500" />
       </div>
     </>
   );
