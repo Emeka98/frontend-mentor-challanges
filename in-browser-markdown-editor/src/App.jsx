@@ -1,8 +1,9 @@
 import Navbar from "./components/Navbar";
-import Toggle from "./components/Switch";
+import AsideBar from "./components/AsideBar";
 function App() {
   return (
     <>
+      <AsideBar />
       <Navbar />
     </>
   );

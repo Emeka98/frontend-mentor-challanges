@@ -1,31 +1,24 @@
 import React from "react";
 import Logo from "../../assets/logo.svg";
+import { useData } from "../../context/DataContext";
+import { Squash as Hamburger } from "hamburger-react";
 
 function index() {
+  const { isActiveAside, setIsActiveAside } = useData();
   return (
-    <header className="w-full h-14 bg-black-900">
-      <div className="w-full h-full py-2 flex items-center">
+    <header
+      className={`w-full h-14 bg-black-900 z-10  transition-all
+      "duration-300 ${isActiveAside ? "ml-[250px] " : ""}`}
+    >
+      <div className="w-full h-full py-2 flex items-center ">
         {/* Hamburger Button For Mobile */}
-        <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="56"
-            height="56"
-            viewBox="0 0 56 56"
-            fill="none"
-          >
-            <rect width="56" height="56" fill="#35393F" />
-            <rect x="17" y="21" width="23" height="1.55556" fill="white" />
-            <rect x="17" y="27.2222" width="23" height="1.55556" fill="white" />
-            <rect x="17" y="33.4445" width="23" height="1.55556" fill="white" />
-          </svg>
+        <button onClick={() => setIsActiveAside(!isActiveAside)}>
+          <Hamburger color="#fff" />
         </button>
-
         {/* Logo */}
         <div className="ml-6 pr-6 border-r-[1px] h-full  items-center justify-center border-black-600 hidden lg:flex ">
           <img src={Logo} alt="Logo" />
         </div>
-
         {/* Tittle */}
         <div className="flex items-center gap-4 pl-6">
           <svg
@@ -52,9 +45,8 @@ function index() {
             </h4>
           </div>
         </div>
-
-        {/* Buttons */}
-        <div className="ml-auto flex gap-6 pr-2">
+        Ï{/* Buttons */}
+        <div className="ml-auto flex gap-6 pr-2 lg:pr-4">
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"

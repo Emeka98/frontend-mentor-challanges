@@ -4,12 +4,15 @@ const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const [theme, setTheme] = useState(false);
+  const [isActiveAside , setIsActiveAside] = useState(false)
   const contextData = useMemo(
     () => ({
       theme,
       setTheme,
+      isActiveAside,
+      setIsActiveAside
     }),
-    [theme]
+    [theme , isActiveAside]
   );
 
   return (
