@@ -1,8 +1,10 @@
-import Navbar from './components/Navbar'
+import Navbar from "./components/Navbar";
+import Toggle from './components/Switch'
 function App() {
   return (
     <>
-<Navbar/>
+      <Navbar />
+      <Toggle />
     </>
   );
 }

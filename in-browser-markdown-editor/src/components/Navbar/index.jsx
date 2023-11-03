@@ -3,7 +3,8 @@ import React from "react";
 function index() {
   return (
     <div>
-      <p className="text-black-1000"> test</p>
+      <p className="text-black-1000 font-roboto-slab">test</p>
+
     </div>
   );
 }
