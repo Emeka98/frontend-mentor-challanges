@@ -3,12 +3,12 @@ import { Switch } from "@headlessui/react";
 import { useData } from "../../context/DataContext";
 import { BiMoon, BiSun } from "react-icons/bi";
 
-function Toggle() {
+function Toggle({...props}) {
   const { theme, setTheme } = useData();
 
   return (
-    <>
-      <div className="flex items-center gap-1">
+    
+      <div  {...props}>
         <BiMoon onClick={() => setTheme(!theme)} className="fill-black-500" />
         <Switch
           checked={theme}
@@ -26,7 +26,7 @@ function Toggle() {
         </Switch>
         <BiSun onClick={() => setTheme(!theme)} className="fill-black-500" />
       </div>
-    </>
+    
   );
 }
 export default Toggle;

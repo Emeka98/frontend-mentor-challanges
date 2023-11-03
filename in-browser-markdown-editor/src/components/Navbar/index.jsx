@@ -8,7 +8,7 @@ function index() {
   return (
     <header
       className={`w-full h-14 bg-black-900 z-10  transition-all
-      "duration-300 ${isActiveAside ? "ml-[250px] " : ""}`}
+      "duration-500 ${isActiveAside ? "ml-[250px] " : ""}`}
     >
       <div className="w-full h-full py-2 flex items-center ">
         {/* Hamburger Button For Mobile */}
