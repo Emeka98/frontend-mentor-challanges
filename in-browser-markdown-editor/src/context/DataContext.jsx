@@ -4,6 +4,7 @@ const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const [theme, setTheme] = useState(false);
+  const [isMarkdown, setIsMarkdown] = useState(false);
   const [isActiveAside, setIsActiveAside] = useState(false);
   const example = Data[1].content;
   const [markdown, setMarkdown] = useState(example);
@@ -17,8 +18,10 @@ export function DataContextProvider({ children }) {
       setIsActiveAside,
       markdown,
       setMarkdown,
+      isMarkdown,
+      setIsMarkdown,
     }),
-    [theme, isActiveAside, markdown]
+    [theme, isActiveAside, markdown, isMarkdown]
   );
 
   return (
