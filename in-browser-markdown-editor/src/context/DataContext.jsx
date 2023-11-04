@@ -9,7 +9,7 @@ export function DataContextProvider({ children }) {
   const example = Data[1].content;
   const [markdown, setMarkdown] = useState(example);
 
-  console.log(markdown);
+
   const contextData = useMemo(
     () => ({
       theme,
@@ -36,3 +36,5 @@ export function useData() {
   }
   return context;
 }
+
+

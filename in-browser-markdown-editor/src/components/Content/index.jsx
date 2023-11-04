@@ -11,6 +11,9 @@ function Content() {
     setIsMarkdown,
     setMarkdown,
   } = useData();
+
+  console.log(isMarkdown);
+
   return (
     <div className={`${theme ? "bg-black-900" : "bg-white"} w-full h-full `}>
       {/* Title */}
@@ -24,7 +27,7 @@ function Content() {
             theme ? "text-white" : "text-black-500"
           } `}
         >
-          Markdown
+          {isMarkdown ? "  Preview" : "Markdown"}
         </h3>
         <button onClick={() => setIsMarkdown(!isMarkdown)}>
           {isMarkdown ? (
@@ -63,9 +66,9 @@ function Content() {
 
       {isMarkdown ? (
         <Markdown
-          className={`w-full min-h-screen pb-20   pt-4 px-6 flex flex-col gap-6 ${
+          className={`w-full lg:mx-auto lg:max-w-[672px] min-h-screen pb-20   pt-4 px-6 flex flex-col gap-6 ${
             theme ? "bg-black-1000" : "bg-white"
-          } ${isActiveAside ? "ml-[250px] pl-5 " : ""}`}
+          } `}
           components={{
             h1: ({ node, ...props }) => (
               <h1
@@ -142,7 +145,9 @@ function Content() {
 
             code: ({ node, ...props }) => (
               <code
-                className={`${theme ? "text-white" : "text-black-1000"}  `}
+                className={`${
+                  theme ? "text-white" : "text-black-1000"
+                } text-[13px] leading-6 font-normal font-roboto-mono  `}
                 {...props}
               />
             ),
@@ -160,15 +165,122 @@ function Content() {
           {markdown}
         </Markdown>
       ) : (
-        <pre className="min-h-screen w-full">
-          <textarea
-            name="text"
-            id="text"
-            className="min-h-screen w-full appearance-none outline-none"
-            value={markdown}
-            onChange={(e) => setMarkdown(e.target.value)}
-          ></textarea>
-        </pre>
+        <div className="flex min-h-screen p-6">
+          <pre
+            className={`min-h-screen w-full flex-1 border-r border-r-black-300  ${
+              isActiveAside ? "ml-[250px]" : ""
+            } `}
+          >
+            <textarea
+              name="text"
+              id="text"
+              className="min-h-full w-full appearance-none outline-none border-none resize-none"
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+            ></textarea>
+          </pre>
+          <div className="hidden md:block flex-1">
+            <Markdown
+              className={`w-full min-h-screen pb-20   pt-4 px-6 flex flex-col gap-6  ${
+                theme ? "bg-black-1000" : "bg-white"
+              } `}
+              components={{
+                h1: ({ node, ...props }) => (
+                  <h1
+                    className={`font-roboto-slab text-[32px] font-bold leading-normal ${
+                      theme ? "text-white" : "text-black-700"
+                    }`}
+                    {...props}
+                  />
+                ),
+                h2: ({ node, ...props }) => (
+                  <h2
+                    className={`font-roboto-slab text-[28px] font-light leading-normal ${
+                      theme ? "text-white" : "text-black-700"
+                    }`}
+                    {...props}
+                  />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3
+                    className={`font-roboto-slab text-[24px] font-bold leading-normal ${
+                      theme ? "text-white" : "text-black-700"
+                    }`}
+                    {...props}
+                  />
+                ),
+                h4: ({ node, ...props }) => (
+                  <h4
+                    className={`font-roboto-slab text-[20px] font-bold leading-normal ${
+                      theme ? "text-white" : "text-black-700"
+                    }`}
+                    {...props}
+                  />
+                ),
+                h5: ({ node, ...props }) => (
+                  <h5
+                    className={`font-roboto-slab text-[16px] font-bold leading-normal ${
+                      theme ? "text-white" : "text-black-700"
+                    }`}
+                    {...props}
+                  />
+                ),
+                h6: ({ node, ...props }) => (
+                  <h6
+                    className="font-roboto-slab text-[14px] font-bold leading-normal text-orange"
+                    {...props}
+                  />
+                ),
+                p: ({ node, ...props }) => (
+                  <p
+                    className="font-roboto-slab text-sm font-normal leading-6 text-black-500"
+                    {...props}
+                  />
+                ),
+                ol: ({ node, ...props }) => (
+                  <ol className="list-decimal pl-4" {...props} />
+                ),
+                ul: ({ node, ...props }) => (
+                  <ul className="list-disc pl-4" {...props} />
+                ),
+                li: ({ node, ...props }) => (
+                  <li
+                    className="text-black-500 font-roboto-slab text-sm font-normal leading-6"
+                    {...props}
+                  />
+                ),
+                blockquote: ({ node, ...props }) => (
+                  <blockquote
+                    className={`bg-black-200 p-6 rounded border-l-4 border-orange ${
+                      theme ? "bg-black-800" : "bg-white"
+                    } `}
+                    {...props}
+                  />
+                ),
+
+                code: ({ node, ...props }) => (
+                  <code
+                    className={`${
+                      theme ? "text-white" : "text-black-1000"
+                    } text-[13px] leading-6 font-normal font-roboto-mono  `}
+                    {...props}
+                  />
+                ),
+
+                pre: ({ node, ...props }) => (
+                  <pre
+                    className={`p-6 text-sm font-normal leading-6 font-roboto-mono ${
+                      theme ? "bg-black-800 " : "bg-black-200 "
+                    }`}
+                    {...props}
+                  />
+                ),
+              }}
+            >
+              {markdown}
+            </Markdown>
+          </div>
+        </div>
       )}
     </div>
   );
