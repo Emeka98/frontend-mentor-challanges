@@ -3,9 +3,10 @@ import { useData } from "../../context/DataContext";
 import classNames from "classnames";
 import Logo from "../../assets/logo.svg";
 import Toggle from "../Toggle";
+import Data from '../../../data.json'
 
 function index() {
-  const { isActiveAside } = useData();
+  const { isActiveAside , setActivePage } = useData();
   return (
     <aside
       className={classNames(
@@ -36,8 +37,9 @@ function index() {
 
         {/* Documents */}
 
-        <div className="flex flex-col mt-6">
-          <div className="flex gap-7 items-center">
+        <div className="flex flex-col gap-7 mt-6 ">
+          {Data.map((item , i) => (
+            <div key={i} onClick={() => setActivePage(i)} className="flex gap-7 items-center cursor-pointer">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,10 +57,11 @@ function index() {
               </svg>
             </div>
             <div>
-              <h6 className="text-[13px] font-light leading-normal font-roboto">01 April 2022</h6>
-              <h3 className="text-[15px] font-normal font-roboto leading-normal">untitled-document.md</h3>
+              <h6 className="text-[13px] font-light leading-normal font-roboto">{item.createdAt}</h6>
+              <h3 className="text-[15px] font-normal font-roboto leading-normal">{item.name}</h3>
             </div>
           </div>
+          ))}
         </div>
 
         <Toggle className="flex items-center gap-1 mt-auto" />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Markdown from "react-markdown";
 import { useData } from "../../context/DataContext";
 
@@ -6,14 +6,13 @@ function Content() {
   const {
     theme,
     isActiveAside,
-    markdown,
     isMarkdown,
     setIsMarkdown,
+    markdown,
     setMarkdown,
   } = useData();
 
-  console.log(isMarkdown);
-
+  console.log(markdown);
   return (
     <div className={`${theme ? "bg-black-900" : "bg-white"} w-full h-full `}>
       {/* Title */}
@@ -162,7 +161,7 @@ function Content() {
             ),
           }}
         >
-          {markdown}
+          {markdown.content}
         </Markdown>
       ) : (
         <div className="flex min-h-screen p-6">
@@ -175,8 +174,10 @@ function Content() {
               name="text"
               id="text"
               className="min-h-full w-full appearance-none outline-none border-none resize-none"
-              value={markdown}
-              onChange={(e) => setMarkdown(e.target.value)}
+              value={markdown.content}
+              onChange={(e) =>
+                setMarkdown({ ...markdown, content: e.target.value })
+              }
             ></textarea>
           </pre>
           <div className="hidden md:block flex-1">
@@ -277,7 +278,7 @@ function Content() {
                 ),
               }}
             >
-              {markdown}
+              {markdown.content}
             </Markdown>
           </div>
         </div>

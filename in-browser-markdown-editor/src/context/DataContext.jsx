@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+} from "react";
 import Data from "../../data.json";
 const DataContext = createContext();
 
@@ -6,9 +12,12 @@ export function DataContextProvider({ children }) {
   const [theme, setTheme] = useState(false);
   const [isMarkdown, setIsMarkdown] = useState(false);
   const [isActiveAside, setIsActiveAside] = useState(false);
-  const example = Data[1].content;
-  const [markdown, setMarkdown] = useState(example);
+  const [activePage, setActivePage] = useState(1);
+  const [markdown, setMarkdown] = useState(Data[activePage]);
 
+  useEffect(() => {
+    setMarkdown(Data[activePage]);
+  }, [activePage]);
 
   const contextData = useMemo(
     () => ({
@@ -16,12 +25,14 @@ export function DataContextProvider({ children }) {
       setTheme,
       isActiveAside,
       setIsActiveAside,
-      markdown,
-      setMarkdown,
       isMarkdown,
       setIsMarkdown,
+      activePage,
+      setActivePage,
+      markdown,
+      setMarkdown,
     }),
-    [theme, isActiveAside, markdown, isMarkdown]
+    [theme, isActiveAside, isMarkdown, activePage, markdown]
   );
 
   return (
@@ -36,5 +47,3 @@ export function useData() {
   }
   return context;
 }
-
-
