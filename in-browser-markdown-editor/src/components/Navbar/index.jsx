@@ -4,7 +4,21 @@ import { useData } from "../../context/DataContext";
 import { Squash as Hamburger } from "hamburger-react";
 
 function index() {
-  const { isActiveAside, setIsActiveAside , markdown , data} = useData();
+  const {
+    isActiveAside,
+    setIsActiveAside,
+    markdown,
+    data,
+    activePage,
+    setMarkdown,
+    setActivePage
+  } = useData();
+
+  const handleDelete = () => {
+    const filteredData = markdown.filter((d, i) => i !== activePage);
+    setMarkdown([...filteredData]);
+    setActivePage(0)
+  };
 
   return (
     <header
@@ -42,13 +56,14 @@ function index() {
               Document Name
             </h6>
             <h4 className="text-white font-roboto text-[15px] font-normal ">
-            {data.name}
+              {data.name}
             </h4>
           </div>
         </div>
-        Ï{/* Buttons */}
+        {/* Buttons */}
         <div className="ml-auto flex gap-6 pr-2 lg:pr-4">
-          <button>
+          {/* Delete */}
+          <button onClick={handleDelete}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -64,8 +79,8 @@ function index() {
               />
             </svg>
           </button>
-
-          <button className=" ">
+          {/* Save */}
+          <button onClick={() => console.log("tiklandi")} className=" ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"

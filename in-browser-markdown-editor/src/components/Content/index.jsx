@@ -12,11 +12,8 @@ function Content() {
     setMarkdown,
     activePage,
     data,
-    setData
+    setData,
   } = useData();
-
-
-
 
   return (
     <div className={`${theme ? "bg-black-900" : "bg-white"} w-full h-full `}>
@@ -182,9 +179,10 @@ function Content() {
                 theme ? "bg-black-1000 text-black-400" : "bg-white"
               } `}
               value={data.content}
-              onChange={(e) =>
-                setData({ ...data, content: e.target.value })
-              }
+              onChange={(e) => {
+                const updatedData = { ...data, content: e.target.value };
+                setData(updatedData);
+              }}
             ></textarea>
           </pre>
           <div className="hidden md:block flex-1">
