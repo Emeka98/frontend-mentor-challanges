@@ -11,19 +11,33 @@ function index() {
     data,
     activePage,
     setMarkdown,
-    setActivePage
+    setActivePage,
   } = useData();
 
   const handleDelete = () => {
     const filteredData = markdown.filter((d, i) => i !== activePage);
     setMarkdown([...filteredData]);
-    setActivePage(0)
+    setActivePage(0);
   };
+
+  const handleSave = () => {
+    const storedData = JSON.parse(localStorage.getItem("myData")) || []; 
+    const isDataExist = storedData.some((item) => item.name === data.name);
+  
+    
+    if (!isDataExist) {
+      const updatedData = [...storedData, data]; // Yeni veriyi mevcut verilere ekle
+      localStorage.setItem("myData", JSON.stringify(updatedData)); // Önceki verileri ve yeni veriyi localStorage'a kaydet
+    }
+  };
+
+  console.log(markdown);
 
   return (
     <header
-      className={`w-full h-14 bg-black-900 z-10  transition-all
-      "duration-500 ${isActiveAside ? "ml-[250px] " : ""}`}
+      className={`w-full h-14 bg-black-900 z-10 transition-all duration-500 ${
+        isActiveAside ? "ml-[250px]" : ""
+      }`}
     >
       <div className="w-full h-full py-2 flex items-center ">
         {/* Hamburger Button For Mobile */}
@@ -80,7 +94,7 @@ function index() {
             </svg>
           </button>
           {/* Save */}
-          <button onClick={() => console.log("tiklandi")} className=" ">
+          <button onClick={handleSave} className=" ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"

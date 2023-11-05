@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../context/DataContext";
 import classNames from "classnames";
 import Logo from "../../assets/logo.svg";
 import Toggle from "../Toggle";
-
 
 function index() {
   const { isActiveAside, setActivePage, markdown, setMarkdown } = useData();
@@ -14,10 +13,10 @@ function index() {
     if (event.key === "Enter") {
       setNewDocument(false);
       addNewItem();
-
     }
   };
 
+  // ADD NEW ITEM
   const addNewItem = () => {
     const today = new Date();
     const formattedDate = today.toLocaleDateString("tr-TR");
@@ -27,11 +26,18 @@ function index() {
       content: "",
     };
 
+    // ITEM UPDATE
     const updateItem = [...markdown, newItem];
     setMarkdown(updateItem);
   };
 
-  console.log(markdown)
+  useEffect(() => {
+    const storageData = localStorage.getItem("myData");
+    if (storageData) {
+      const parsedData = JSON.parse(storageData);
+      setMarkdown([...markdown, ...parsedData]);
+    }
+  }, []);
 
   return (
     <aside
@@ -57,7 +63,10 @@ function index() {
           My Documents
         </h4>
 
-        <button onClick={() => setNewDocument(true)} className="inline-flex w-full h-10 justify-center items-center bg-orange hover:bg-orange-hover text-white font-normal text-[15px] font-roboto leading-normal rounded mt-[29px]">
+        <button
+          onClick={() => setNewDocument(true)}
+          className="inline-flex w-full h-10 justify-center items-center bg-orange hover:bg-orange-hover text-white font-normal text-[15px] font-roboto leading-normal rounded mt-[29px]"
+        >
           + New Document
         </button>
 

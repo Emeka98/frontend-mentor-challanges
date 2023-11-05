@@ -3,17 +3,9 @@ import Markdown from "react-markdown";
 import { useData } from "../../context/DataContext";
 
 function Content() {
-  const {
-    theme,
-    isActiveAside,
-    isMarkdown,
-    setIsMarkdown,
-    markdown,
-    setMarkdown,
-    activePage,
-    data,
-    setData,
-  } = useData();
+  const { theme, isActiveAside, isMarkdown, setIsMarkdown, data, setData } =
+    useData();
+
 
   return (
     <div className={`${theme ? "bg-black-900" : "bg-white"} w-full h-full `}>
