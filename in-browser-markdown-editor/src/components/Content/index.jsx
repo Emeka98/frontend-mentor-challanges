@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Markdown from "react-markdown";
 import { useData } from "../../context/DataContext";
 
@@ -10,9 +10,14 @@ function Content() {
     setIsMarkdown,
     markdown,
     setMarkdown,
+    activePage,
+    data,
+    setData
   } = useData();
 
-  console.log(markdown);
+
+
+
   return (
     <div className={`${theme ? "bg-black-900" : "bg-white"} w-full h-full `}>
       {/* Title */}
@@ -161,7 +166,7 @@ function Content() {
             ),
           }}
         >
-          {markdown.content}
+          {data.content}
         </Markdown>
       ) : (
         <div className="flex min-h-screen p-6">
@@ -173,10 +178,12 @@ function Content() {
             <textarea
               name="text"
               id="text"
-              className="min-h-full w-full appearance-none outline-none border-none resize-none"
-              value={markdown.content}
+              className={`min-h-full w-full appearance-none outline-none border-none resize-none lg:p-4 ${
+                theme ? "bg-black-1000 text-black-400" : "bg-white"
+              } `}
+              value={data.content}
               onChange={(e) =>
-                setMarkdown({ ...markdown, content: e.target.value })
+                setData({ ...data, content: e.target.value })
               }
             ></textarea>
           </pre>
@@ -278,7 +285,7 @@ function Content() {
                 ),
               }}
             >
-              {markdown.content}
+              {data.content}
             </Markdown>
           </div>
         </div>

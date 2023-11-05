@@ -13,10 +13,11 @@ export function DataContextProvider({ children }) {
   const [isMarkdown, setIsMarkdown] = useState(false);
   const [isActiveAside, setIsActiveAside] = useState(false);
   const [activePage, setActivePage] = useState(1);
-  const [markdown, setMarkdown] = useState(Data[activePage]);
+  const [markdown, setMarkdown] = useState(Data);
+  const [data, setData] = useState(Array());
 
   useEffect(() => {
-    setMarkdown(Data[activePage]);
+    setData(markdown[activePage]);
   }, [activePage]);
 
   const contextData = useMemo(
@@ -31,8 +32,10 @@ export function DataContextProvider({ children }) {
       setActivePage,
       markdown,
       setMarkdown,
+      data,
+      setData,
     }),
-    [theme, isActiveAside, isMarkdown, activePage, markdown]
+    [theme, isActiveAside, isMarkdown, activePage, markdown, data]
   );
 
   return (

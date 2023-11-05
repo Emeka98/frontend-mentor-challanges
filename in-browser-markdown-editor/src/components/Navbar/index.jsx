@@ -4,7 +4,7 @@ import { useData } from "../../context/DataContext";
 import { Squash as Hamburger } from "hamburger-react";
 
 function index() {
-  const { isActiveAside, setIsActiveAside , markdown} = useData();
+  const { isActiveAside, setIsActiveAside , markdown , data} = useData();
 
   return (
     <header
@@ -42,7 +42,7 @@ function index() {
               Document Name
             </h6>
             <h4 className="text-white font-roboto text-[15px] font-normal ">
-            {markdown.name}
+            {data.name}
             </h4>
           </div>
         </div>
