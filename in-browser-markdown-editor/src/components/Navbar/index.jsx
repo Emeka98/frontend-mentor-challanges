@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../assets/logo.svg";
 import { useData } from "../../context/DataContext";
+import { useClickAway } from "@uidotdev/usehooks";
 import { Squash as Hamburger } from "hamburger-react";
 
 function index() {
@@ -15,6 +16,10 @@ function index() {
     setActivePage,
     theme,
   } = useData();
+
+  const ref = useClickAway(() => {
+    setOpen(false);
+  });
 
   const handleDelete = () => {
     const filteredData = markdown.filter((d, i) => i !== activePage);
@@ -124,6 +129,7 @@ function index() {
         {/* Confirm */}
 
         <div
+          ref={ref}
           className={`${open ? "fixed" : "hidden"} ${
             theme ? "bg-[#1D1F22] " : "bg-white"
           }   w-[343px]  z-50   top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2   `}
