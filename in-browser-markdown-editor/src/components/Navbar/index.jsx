@@ -21,10 +21,9 @@ function index() {
   };
 
   const handleSave = () => {
-    const storedData = JSON.parse(localStorage.getItem("myData")) || []; 
+    const storedData = JSON.parse(localStorage.getItem("myData")) || [];
     const isDataExist = storedData.some((item) => item.name === data.name);
-  
-    
+
     if (!isDataExist) {
       const updatedData = [...storedData, data]; // Yeni veriyi mevcut verilere ekle
       localStorage.setItem("myData", JSON.stringify(updatedData)); // Önceki verileri ve yeni veriyi localStorage'a kaydet
@@ -35,11 +34,11 @@ function index() {
 
   return (
     <header
-      className={`w-full h-14 bg-black-900 z-10 transition-all duration-500 ${
+      className={`w-full h-14 bg-black-900 z-10 transition-all duration-500  ${
         isActiveAside ? "ml-[250px]" : ""
       }`}
     >
-      <div className="w-full h-full py-2 flex items-center ">
+      <div className="w-full h-full py-2 flex items-center   ">
         {/* Hamburger Button For Mobile */}
         <button onClick={() => setIsActiveAside(!isActiveAside)}>
           <Hamburger color="#fff" />
