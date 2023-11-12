@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .custom-img{
+background-image: url('../public/pattern-background-mobile-light.svg');
+background-repeat: no-repeat;
+width: 100%;
+height: 100%;
+
+} */
