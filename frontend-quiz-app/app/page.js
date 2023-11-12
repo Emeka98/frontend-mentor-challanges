@@ -2,8 +2,8 @@ import HomeContainer from "@/containers/home";
 
 export default function Home() {
   return (
-    <div className="text-dark-navy">
+    <main className="w-full h-full">
       <HomeContainer />
-    </div>
+    </main>
   );
 }
