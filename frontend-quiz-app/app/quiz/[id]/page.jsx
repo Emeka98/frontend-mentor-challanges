@@ -3,7 +3,7 @@ import QuestionPage from "@/containers/QuestionPage";
 import { notFound } from "next/navigation";
 const getData = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/questions`);
+    const res = await fetch(`/api/questions`);
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
@@ -12,7 +12,6 @@ const getData = async () => {
     console.error("Error fetching data:", error);
     throw new Error("Failed to fetch data from the server");
   }
-  
 };
 
 async function QuizPage({ params }) {
