@@ -2,8 +2,12 @@ import React from "react";
 import QuestionPage from "@/containers/QuestionPage";
 import { notFound } from "next/navigation";
 const getData = async () => {
-  const res = await fetch(`http://localhost:3000/api/questions`);
-  return res.json();
+  try {
+    const res = await fetch(`http://localhost:3000/api/questions`);
+    return res.json();
+  } catch {
+    throw new Error("Failed to fetch data from the server");
+  }
 };
 
 async function QuizPage({ params }) {
