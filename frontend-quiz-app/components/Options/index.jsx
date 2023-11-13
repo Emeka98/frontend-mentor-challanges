@@ -7,7 +7,7 @@ function Option({ optionType, option }) {
       <div className="w-10 h-full rounded-xl bg-light-grey inline-flex items-center justify-center ">
         {optionsTypes[optionType]}
       </div>
-      <p className="text-dark-navy text-lg font-medium leading-5">{option}</p>
+      <p className="text-dark-navy text-start text-lg font-medium leading-5">{option}</p>
     </button>
   );
 }
