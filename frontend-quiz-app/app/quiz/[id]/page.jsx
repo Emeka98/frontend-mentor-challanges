@@ -20,7 +20,7 @@ async function QuizPage({ params }) {
 
   return (
     <div className="lg:container lg:mx-auto">
-      <QuestionPage />
+      <QuestionPage filteredData={filteredData} />
     </div>
   );
 }
