@@ -5,7 +5,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 const getData = async () => {
   try {
-    const res = await fetch(`${apiUrl}/api/questions`);
+    const res = await fetch(`https://frontend-mentor-challanges-umber.vercel.app//api/questions`);
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
