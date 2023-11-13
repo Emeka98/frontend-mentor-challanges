@@ -4,10 +4,15 @@ import { notFound } from "next/navigation";
 const getData = async () => {
   try {
     const res = await fetch(`http://localhost:3000/api/questions`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
     return res.json();
-  } catch {
+  } catch (error) {
+    console.error("Error fetching data:", error);
     throw new Error("Failed to fetch data from the server");
   }
+  
 };
 
 async function QuizPage({ params }) {
