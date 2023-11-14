@@ -1,17 +1,8 @@
 import React from "react";
 import Toggle from "../Toggle";
-import HtmlImg from "@/public/icon-html.svg";
-import CssImg from "@/public/icon-css.svg";
-import JsImg from "@/public/icon-js.svg";
-import AssImg from "@/public/icon-accessibility.svg";
 import Image from "next/image";
+import { images, capitalizeFirstLetter } from "./constant";
 
-const images = [
-  { html: HtmlImg, bgColor: "#FFF1e9" },
-  { css: CssImg, bgColor: "#E0FDEF" },
-  { javascript: JsImg, bgColor: "#EBF0FF" },
-  { accessibility: AssImg, bgColor: "#F6E7FF" },
-];
 function Header({ logo }) {
   const selectedImg = images.find((item) => item.hasOwnProperty(logo));
 
@@ -30,7 +21,9 @@ function Header({ logo }) {
               alt="Picture of logo"
             />
           </div>
-          {logo}
+          <p className="text-dark-navy text-lg md:text-[28px] md:leading-7  font-medium leading-4">
+            {capitalizeFirstLetter(logo)}
+          </p>
         </div>
       )}
       <div className="ml-auto">

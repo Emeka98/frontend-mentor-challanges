@@ -22,7 +22,7 @@ function Toggle() {
 
       <Switch
         checked={enabled}
-        onChange={setEnabled}
+        onChange={() => setEnabled(!enabled)}
         className={`${
           enabled ? "bg-purple" : "bg-purple"
         } relative inline-flex h-5 w-8 items-center rounded-full`}

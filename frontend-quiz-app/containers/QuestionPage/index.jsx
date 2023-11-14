@@ -10,18 +10,20 @@ function QuestionPage({ filteredData }) {
 
   return (
     <div>
-      <div className="flex flex-col">
-        <div className="flex flex-col">
+      <div className="flex flex-col lg:flex-row lg:justify-between gap-10">
+        <div className="flex flex-col lg:flex-1">
           <h3 className="mb-3 text-grey-navy text-sm leading-5 italic">
             {`Question ${currentQuestion + 1} of 10`}
           </h3>
           <h1 className="text-dark-navy text-xl font-medium leading-6">
             {question}
           </h1>
-          <ProgressBar />
+          <div className="lg:mt-auto">
+            <ProgressBar />
+          </div>
         </div>
         {/* Options */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 lg:flex-1 ">
           {options.map((e, i) => (
             <Option key={i} optionType={i} option={e} />
           ))}
