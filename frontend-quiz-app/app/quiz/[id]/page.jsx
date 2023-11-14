@@ -1,11 +1,13 @@
 import React from "react";
 import QuestionPage from "@/containers/QuestionPage";
 import { notFound } from "next/navigation";
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+// const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 const getData = async () => {
   try {
-    const res = await fetch(`https://frontend-mentor-challanges-umber.vercel.app//api/questions`);
+    const res = await fetch(
+      `https://${process.env.API_KEY}.mockapi.io/api/v1/quizzes`
+    );
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
