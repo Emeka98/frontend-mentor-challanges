@@ -1,6 +1,7 @@
 import React from "react";
 import QuestionPage from "@/containers/QuestionPage";
 import { notFound } from "next/navigation";
+import Header from "@/components/Header";
 // const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 const getData = async () => {
@@ -29,9 +30,9 @@ async function QuizPage({ params }) {
   if (!filteredData) {
     notFound();
   }
-
   return (
     <div className="lg:container lg:mx-auto">
+      <Header logo={id} />
       <QuestionPage filteredData={filteredData} />
     </div>
   );

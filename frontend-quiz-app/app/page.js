@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import HomeContainer from "@/containers/home";
 
 export const metadata = {
