@@ -21,7 +21,7 @@ function Header({ logo }) {
               alt="Picture of logo"
             />
           </div>
-          <p className="text-dark-navy text-lg md:text-[28px] md:leading-7  font-medium leading-4">
+          <p className="text-dark-navy dark:text-white text-lg md:text-[28px] md:leading-7  font-medium leading-4">
             {capitalizeFirstLetter(logo)}
           </p>
         </div>
