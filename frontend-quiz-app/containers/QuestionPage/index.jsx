@@ -12,10 +12,10 @@ function QuestionPage({ filteredData }) {
     <div>
       <div className="flex flex-col lg:flex-row lg:justify-between gap-10">
         <div className="flex flex-col lg:flex-1">
-          <h3 className="mb-3 text-grey-navy text-sm leading-5 italic">
+          <h3 className="mb-3 text-grey-navy dark:text-light-bluish text-sm leading-5 italic">
             {`Question ${currentQuestion + 1} of 10`}
           </h3>
-          <h1 className="text-dark-navy text-xl font-medium leading-6">
+          <h1 className="text-dark-navy dark:text-white text-xl font-medium leading-6">
             {question}
           </h1>
           <div className="lg:mt-auto">

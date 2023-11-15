@@ -1,13 +1,16 @@
 "use client";
 import { Switch } from "@headlessui/react";
 import { useTheme } from "next-themes";
-
+import { useState } from "react";
 
 function Toggle() {
   const { theme, setTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-
-
+  const handleChange = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+    setIsDarkMode(!isDarkMode);
+  };
   return (
     <div className="flex items-center gap-2">
       <svg
@@ -24,16 +27,16 @@ function Toggle() {
       </svg>
 
       <Switch
-        checked={theme}
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        checked={isDarkMode}
+        onChange={handleChange}
         className={`${
-          theme ? "bg-purple" : "bg-purple"
+          isDarkMode ? "bg-purple" : "bg-purple"
         } relative inline-flex h-5 w-8 items-center rounded-full`}
       >
         <span className="sr-only">Enable notifications</span>
         <span
           className={`${
-            theme ? "translate-x-4" : "translate-x-1"
+            isDarkMode ? "translate-x-4" : "translate-x-1"
           } inline-block h-3 w-3 transform rounded-full bg-white transition`}
         />
       </Switch>
