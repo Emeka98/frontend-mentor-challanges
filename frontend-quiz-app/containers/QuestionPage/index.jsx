@@ -38,7 +38,7 @@ function QuestionPage({ filteredData }) {
             {question}
           </h1>
           <div className="lg:mt-auto">
-            <ProgressBar />
+            <ProgressBar key={currentQuestion} />
           </div>
         </div>
         {/* Options */}

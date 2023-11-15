@@ -1,7 +1,6 @@
 "use client";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-
 function ProgressBar() {
   const progressBarClasses = classNames(
     styles["round-time-bar"],

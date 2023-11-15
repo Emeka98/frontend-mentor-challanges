@@ -14,6 +14,7 @@
 }
 
 .round-time-bar[data-style="smooth"] div {
+  width: 100%;
   animation: roundtime calc(var(--duration) * 1s) linear forwards;
 }
 
