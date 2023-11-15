@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 

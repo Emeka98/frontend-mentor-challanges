@@ -1,12 +1,31 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "@/components/ProgressBar";
 import Option from "@/components/Options";
 function QuestionPage({ filteredData }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
   const question = filteredData.questions[currentQuestion].question;
   const options = filteredData.questions[currentQuestion].options;
+  const answer = filteredData.questions[currentQuestion].answer;
+
+  const updateScore = () => {
+    setScore((prev) => prev + 1);
+  };
+
+  const handleNextQuestion = () => {
+    setCurrentQuestion((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (currentQuestion < filteredData.questions.length - 1) {
+        setCurrentQuestion((prev) => prev + 1);
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [currentQuestion, filteredData.questions.length]);
 
   return (
     <div>
@@ -28,7 +47,7 @@ function QuestionPage({ filteredData }) {
             <Option key={i} optionType={i} option={e} />
           ))}
           <button
-            onClick={() => setCurrentQuestion((prev) => prev + 1)}
+            onClick={handleNextQuestion}
             className="w-full h-[56px] bg-purple shadow-lg rounded-xl inline-flex items-center justify-center text-white text-[18px] font-medium leading-7 "
           >
             Next Question
