@@ -50,7 +50,7 @@ function QuestionPage({ filteredData }) {
             onClick={handleNextQuestion}
             className="w-full h-[56px] bg-purple shadow-lg rounded-xl inline-flex items-center justify-center text-white text-[18px] font-medium leading-7 "
           >
-            Next Questionn
+            Next Question
           </button>
         </div>
       </div>
