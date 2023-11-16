@@ -1,14 +1,27 @@
-import React from "react";
-
-function Option({ optionType, option }) {
+function Option({ optionType, option, isCorrect, isSelected, onOptionChange }) {
   const optionsTypes = ["A", "B", "C", "D"];
+
+  const handleRadioChange = () => {
+    onOptionChange(optionType);
+  };
+
   return (
-    <button className="w-full h-16 inline-flex items-center justify-start bg-white dark:bg-navy  gap-4 shadow-lg rounded-xl p-3">
-      <div className="w-10 h-full rounded-xl bg-light-grey dark:text-grey-navy inline-flex items-center justify-center ">
+    <label className="flex items-center gap-4  ">
+      <input
+        type="radio"
+        className=" rounded border-gray-300 focus:ring-blue-500 focus:border-blue-500   "
+        checked={isSelected}
+        onChange={handleRadioChange}
+      />
+      <div
+        className={`w-10 h-10 rounded-md font-medium  bg-light-grey  dark:text-grey-navy flex items-center justify-center border-none shrink-0`}
+      >
         {optionsTypes[optionType]}
       </div>
-      <p className="text-dark-navy dark:text-white text-start text-lg font-medium leading-5">{option}</p>
-    </button>
+      <p className="text-dark-navy dark:text-white text-start text-lg font-medium leading-5">
+        {option} {isCorrect && 'True'}
+      </p>
+    </label>
   );
 }
 

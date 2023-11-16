@@ -1,20 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ProgressBar from "@/components/ProgressBar";
+import Form from "@/components/Form";
 import Option from "@/components/Options";
 function QuestionPage({ filteredData }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const question = filteredData.questions[currentQuestion].question;
-  const options = filteredData.questions[currentQuestion].options;
-  const answer = filteredData.questions[currentQuestion].answer;
 
   const updateScore = () => {
     setScore((prev) => prev + 1);
-  };
-
-  const handleNextQuestion = () => {
-    setCurrentQuestion((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -41,18 +36,12 @@ function QuestionPage({ filteredData }) {
             <ProgressBar key={currentQuestion} />
           </div>
         </div>
-        {/* Options */}
-        <div className="flex flex-col gap-3 lg:flex-1 ">
-          {options.map((e, i) => (
-            <Option key={i} optionType={i} option={e} />
-          ))}
-          <button
-            onClick={handleNextQuestion}
-            className="w-full h-[56px] bg-purple shadow-lg rounded-xl inline-flex items-center justify-center text-white text-[18px] font-medium leading-7 "
-          >
-            Next Question
-          </button>
-        </div>
+        {/* Options for answer*/}
+        <Form
+          currentQuestion={currentQuestion}
+          filteredData={filteredData}
+          setCurrentQuestion={setCurrentQuestion}
+        />
       </div>
     </div>
   );

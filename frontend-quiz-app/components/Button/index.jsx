@@ -5,7 +5,7 @@ function Button({ item }) {
   return (
     <Link
       href={item.redirect}
-      className="w-full p-3  bg-white dark:bg-navy border-white border-2 shadow-xl rounded-xl inline-flex items-center gap-4 lg:hover:scale-105 border-none"
+      className="w-full p-3  bg-white dark:bg-navy border-white border-2 shadow-xl rounded-xl inline-flex items-center gap-4 lg:hover:scale-105 lg:transition-all   border-none"
     >
       <div className="p-1 rounded-md" style={{ backgroundColor: item.bgColor }}>
         <Image
