@@ -1,12 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Option from "../Options";
 function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
   const options = filteredData.questions[currentQuestion].options;
   const answer = filteredData.questions[currentQuestion].answer;
-
+  // States
   const [selectedOption, setSelectedOption] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
+  const [totalPoint, setTotalPoint] = useState(0);
 
   const handleOptionChange = (optionType) => {
     setSelectedOption(optionType);
@@ -17,9 +20,28 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
       setErrorMessage("Please select an answer");
       return;
     }
+
+    const isCorrectAnswer = answer === options[selectedOption];
+
+    // Eğer seçilen seçenek doğru ise isCorrect state'ini 400ms boyunca true yap ve sonra false yap
+    if (isCorrectAnswer) {
+      setIsCorrect(true);
+      setTimeout(() => {
+        setIsCorrect(false);
+      }, 400);
+    }
+
+    if (!isCorrectAnswer) {
+      setIsWrong(true);
+      setTimeout(() => {
+        setIsCorrect(false);
+      }, 400);
+    }
+
     setTimeout(() => {
       setSelectedOption(null);
       setErrorMessage(null);
+      setIsWrong(false)
       setCurrentQuestion((prev) => prev + 1);
     }, 400);
   };
@@ -31,7 +53,8 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
           key={i}
           optionType={i}
           option={e}
-          isCorrect={answer === e}
+          isCorrect={isCorrect}
+          isWrong={isWrong}
           isSelected={selectedOption === i}
           onOptionChange={(i) => handleOptionChange(i)}
         />
@@ -43,8 +66,9 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
       >
         Next Question
       </button>
+      {/* Error Message */}
       {errorMessage && (
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -57,7 +81,7 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
               fill="#EE5454"
             />
           </svg>
-          <p className="text-red font-normal leading-9 text-2xl">
+          <p className="text-red dark:text-white font-normal leading-9 text-lg md:text-2xl">
             {errorMessage}
           </p>
         </div>
