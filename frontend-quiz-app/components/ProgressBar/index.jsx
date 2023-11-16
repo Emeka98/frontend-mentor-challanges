@@ -11,7 +11,7 @@ function ProgressBar() {
     <div
       className={progressBarClasses}
       data-style="smooth"
-      style={{ "--duration": "10" }}
+      style={{ "--duration": "30" }}
     >
       <div></div>
     </div>

@@ -2,22 +2,18 @@
 import React, { useEffect, useState } from "react";
 import ProgressBar from "@/components/ProgressBar";
 import Form from "@/components/Form";
-import Option from "@/components/Options";
-function QuestionPage({ filteredData }) {
+
+function QuestionPage({ filteredData , id }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const question = filteredData.questions[currentQuestion].question;
-
-  const updateScore = () => {
-    setScore((prev) => prev + 1);
-  };
+  const question = filteredData.questions[currentQuestion]?.question;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (currentQuestion < filteredData.questions.length - 1) {
         setCurrentQuestion((prev) => prev + 1);
       }
-    }, 10000);
+    }, 30000);
 
     return () => clearTimeout(timer);
   }, [currentQuestion, filteredData.questions.length]);
@@ -38,9 +34,12 @@ function QuestionPage({ filteredData }) {
         </div>
         {/* Options for answer*/}
         <Form
+          score={score}
+          setScore={setScore}
           currentQuestion={currentQuestion}
           filteredData={filteredData}
           setCurrentQuestion={setCurrentQuestion}
+          id={id}
         />
       </div>
     </div>

@@ -1,15 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Option from "../Options";
-function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
-  const options = filteredData.questions[currentQuestion].options;
-  const answer = filteredData.questions[currentQuestion].answer;
+import Link from "next/link";
+function Form({
+  filteredData,
+  currentQuestion,
+  setCurrentQuestion,
+  score,
+  setScore,
+  id,
+}) {
+  const options = filteredData.questions[currentQuestion]?.options;
+  const answer = filteredData.questions[currentQuestion]?.answer;
   // States
   const [selectedOption, setSelectedOption] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
-  const [totalPoint, setTotalPoint] = useState(0);
 
   const handleOptionChange = (optionType) => {
     setSelectedOption(optionType);
@@ -20,12 +27,11 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
       setErrorMessage("Please select an answer");
       return;
     }
-
     const isCorrectAnswer = answer === options[selectedOption];
 
-    // Eğer seçilen seçenek doğru ise isCorrect state'ini 400ms boyunca true yap ve sonra false yap
     if (isCorrectAnswer) {
       setIsCorrect(true);
+      setScore((prev) => prev + 1);
       setTimeout(() => {
         setIsCorrect(false);
       }, 400);
@@ -41,14 +47,14 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
     setTimeout(() => {
       setSelectedOption(null);
       setErrorMessage(null);
-      setIsWrong(false)
+      setIsWrong(false);
       setCurrentQuestion((prev) => prev + 1);
     }, 400);
   };
 
   return (
     <form className="flex flex-col gap-3 lg:flex-1 ">
-      {options.map((e, i) => (
+      {options?.map((e, i) => (
         <Option
           key={i}
           optionType={i}
@@ -64,8 +70,18 @@ function Form({ filteredData, currentQuestion, setCurrentQuestion }) {
         type="button"
         className="w-full h-[56px] bg-purple shadow-lg rounded-xl inline-flex items-center justify-center text-white text-[18px] font-medium leading-7 "
       >
-        Next Question
+        {currentQuestion === 9 ? (
+          <Link
+            className="w-full h-full inline-flex items-center justify-center"
+            href={`/quiz/${id}/result?score=${score}`}
+          >
+            Submit Answer
+          </Link>
+        ) : (
+          "Next Question"
+        )}
       </button>
+
       {/* Error Message */}
       {errorMessage && (
         <div className="flex gap-2 items-center">
