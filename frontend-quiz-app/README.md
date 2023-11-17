@@ -29,8 +29,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/frondend-quiz-app-with-nextjs-tailwindcss-ihDNFSqhZV)
-- Live Site URL: [Add live site URL here](https://frontend-mentor-challanges-umber.vercel.app/)
+- Solution URL: [Solution URL here](https://www.frontendmentor.io/solutions/frondend-quiz-app-with-nextjs-tailwindcss-ihDNFSqhZV)
+- Live Site URL: [Live site URL here](https://frontend-mentor-challanges-umber.vercel.app/)
 
 ## My process
 
