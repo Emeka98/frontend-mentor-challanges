@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProgressBar from "@/components/ProgressBar";
 import Form from "@/components/Form";
 
-function QuestionPage({ filteredData , id }) {
+function QuestionPage({ filteredData , id  }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const question = filteredData.questions[currentQuestion]?.question;

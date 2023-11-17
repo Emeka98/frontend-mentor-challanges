@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Option from "../Options";
-import Link from "next/link";
 function Form({
   filteredData,
   currentQuestion,
@@ -17,17 +16,17 @@ function Form({
   const [errorMessage, setErrorMessage] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
-
   const handleOptionChange = (optionType) => {
     setSelectedOption(optionType);
   };
 
   const handleNextQuestion = () => {
+    const isCorrectAnswer = answer === options[selectedOption];
+
     if (selectedOption === null) {
       setErrorMessage("Please select an answer");
       return;
     }
-    const isCorrectAnswer = answer === options[selectedOption];
 
     if (isCorrectAnswer) {
       setIsCorrect(true);
@@ -35,6 +34,11 @@ function Form({
       setTimeout(() => {
         setIsCorrect(false);
       }, 400);
+
+      if (currentQuestion === 9) {
+        window.location.href = `/quiz/${id}/result?score=${score + 1}`;
+        return;
+      }
     }
 
     if (!isCorrectAnswer) {
@@ -42,6 +46,11 @@ function Form({
       setTimeout(() => {
         setIsCorrect(false);
       }, 400);
+    }
+
+    if (currentQuestion === 9) {
+      window.location.href = `/quiz/${id}/result?score=${score}`;
+      return;
     }
 
     setTimeout(() => {
@@ -70,16 +79,7 @@ function Form({
         type="button"
         className="w-full h-[56px] bg-purple shadow-lg rounded-xl inline-flex items-center justify-center text-white text-[18px] font-medium leading-7 "
       >
-        {currentQuestion === 9 ? (
-          <Link
-            className="w-full h-full inline-flex items-center justify-center"
-            href={`/quiz/${id}/result?score=${score}`}
-          >
-            Submit Answer
-          </Link>
-        ) : (
-          "Next Question"
-        )}
+        {currentQuestion === 9 ? "Submit Answer" : "Next Question"}
       </button>
 
       {/* Error Message */}

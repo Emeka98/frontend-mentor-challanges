@@ -14,6 +14,7 @@ async function QuizPage({ params }) {
   if (!filteredData) {
     notFound();
   }
+
   return (
     <div className="lg:container lg:mx-auto">
       <Header logo={id} />
