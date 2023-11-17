@@ -16,7 +16,7 @@ function ResultContainer({ id }) {
       </h1>
 
       <div className="lg:w-[564px]">
-        <div className="bg-white w-full mt-10 lg:mt-0">
+        <div className="bg-white dark:bg-navy w-full mt-10 lg:mt-0">
           <div className="w-full py-8 flex flex-col items-center gap-4 shadow-lg rounded-xl">
             <div className="flex items-center gap-4">
               <div
@@ -30,11 +30,11 @@ function ResultContainer({ id }) {
                   height={28}
                 />
               </div>
-              <h5 className="text-lg font-medium text-dark-navy">
+              <h5 className="text-lg font-medium text-dark-navy dark:text-white">
                 {header.title}
               </h5>
             </div>
-            <h2 className="text-[88px] font-medium text-dark-navy">{score}</h2>
+            <h2 className="text-[88px] font-medium text-dark-navy dark:text-white">{score}</h2>
             <p className="text-lg text-grey-navy font-normal ">out of 10</p>
           </div>
         </div>
