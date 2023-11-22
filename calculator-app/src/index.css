@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.default {
+  background-color: #3a4663;
+  color: #434a59 !important;
+}
+
+.light {
+  background-color: #e6e6e6;
+  color: #36362c;
+}
+
+.neon {
+  background-color: #17062a;
+}
+
+
+
+@layer components {
+  .primary-label {
+    @apply font-bold text-xs leading-normal text-inherit;
+  }
+
+  .number {
+    @apply bg-[#EAE3DC] shadow-primary w-[60px] lg:w-[101px] text-inherit;
+  }
+
+  .del-button {
+    @apply bg-[#647198] shadow-secondary w-[60px] lg:w-[101px] text-white;
+  }
+
+  .equals-button {
+    @apply w-[133px] bg-[#D03F2F] shadow-danger text-white lg:w-[227px];
+  }
+
+  .reset-button {
+    @apply w-[133px] bg-[#647198] shadow-secondary text-white lg:w-[227px];
+  }
+}
