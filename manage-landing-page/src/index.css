@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .heading-1 {
+    @apply text-[56px] text-[#242d52] font-bold leading-[56px] tracking-[-1px];
+  }
+}
+
+@layer components {
+  .heading-2 {
+    @apply text-[40px] text-[#242d52] font-bold leading-[44px] tracking-[-0.714px];
+  }
+}
+
+@layer components {
+  .text-custom {
+    color: #242d52;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    opacity: 0.5025;
+  }
+}
+
+@layer utilities {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0.33%,
+      rgba(0, 0, 0, 0.6) 99.79%
+    );
+  }
+}
+
