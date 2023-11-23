@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "./Images/logo-dark.png";
+import Logo from '@/components/Navbar/Images/logo-dark.png'
 import { useClickAway } from "@uidotdev/usehooks";
 import HamburgerIcon from "@/components/HamburgerIcon";
 import clsx from "clsx";
