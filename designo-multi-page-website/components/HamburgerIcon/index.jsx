@@ -29,5 +29,5 @@ const HamburgerIcon = forwardRef(({ isActive, onClick, className }, ref) => {
     </button>
   );
 });
-
+HamburgerIcon.displayName = "HamburgerIcon";
 export default HamburgerIcon;
