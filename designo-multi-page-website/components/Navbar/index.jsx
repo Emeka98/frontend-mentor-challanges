@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from '@/components/Navbar/Images/logo-dark.png'
+import Logo from "@/components/Navbar/Images/logo-dark.png";
 import { useClickAway } from "@uidotdev/usehooks";
 import HamburgerIcon from "@/components/HamburgerIcon";
 import clsx from "clsx";
@@ -21,7 +21,6 @@ function Navbar() {
   const onClick = () => {
     setIsActive(!isActive);
   };
-
 
   return (
     <header className="w-full h-24 flex justify-between items-center px-6 relative bg-white  ">
@@ -58,7 +57,22 @@ function Navbar() {
           {navlinks.map((item) => (
             <li key={item.id} onClick={onClick}>
               <Link
-                className="text-2xl leading-6 tracking-[2px] uppercase "
+                className="text-sm leading-6 tracking-[2px] uppercase "
+                href={item.path}
+              >
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      {/* For Desktop */}
+      <nav className="hidden md:block">
+        <ul className="flex items-center gap-[42px]">
+          {navlinks.map((item) => (
+            <li key={item.id}>
+              <Link
+                className="text-sm text-dark-grey leading-4 tracking-[2px] uppercase "
                 href={item.path}
               >
                 {item.title}
