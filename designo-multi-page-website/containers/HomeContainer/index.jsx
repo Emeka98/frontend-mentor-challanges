@@ -1,12 +1,9 @@
 import React from "react";
-
+import Button from "@/components/Button";
 function HomeContainer() {
   return (
     <div>
-      <p className="text-peach">Deneme</p>
-      <p>deneme</p>
-      <p>Deneme 3</p>
-      <p>deneme4</p>
+<Button theme='dark' path={'about'}>Deneme Butonu</Button>
     </div>
   );
 }
