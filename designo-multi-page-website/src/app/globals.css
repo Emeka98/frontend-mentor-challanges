@@ -2,3 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .heading-l {
+    color: #1d1c1e;
+    font-family: Jost;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 48px;
+  }
+  .heading-m {
+    color: #1d1c1e;
+    font-family: Jost;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: 2px;
+  }
+  .heading-s {
+    color: #333136;
+    font-family: Jost;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .custom-text {
+    color: #333136;
+    font-family: Jost;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+  }
+}
