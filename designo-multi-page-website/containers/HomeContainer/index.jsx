@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
 function HomeContainer() {
   return (
     <div>
-      Home Container
+      <p className="text-peach">Deneme</p>
+      <p>deneme</p>
+      <p>Deneme 3</p>
+      <p>deneme4</p>
     </div>
-  )
+  );
 }
 
-export default HomeContainer
+export default HomeContainer;
