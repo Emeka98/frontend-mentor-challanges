@@ -40,3 +40,15 @@
     line-height: 26px;
   }
 }
+
+@layer utilities {
+  .custom-rotate-1 {
+    transform: translateY(11px) rotate(-45deg);
+  }
+  .custom-rotate-2 {
+    opacity: 0;
+  }
+  .custom-rotate-3 {
+    transform: translate(0, -5px) rotate(45deg);
+  }
+}
