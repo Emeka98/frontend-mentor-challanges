@@ -72,7 +72,7 @@ function Navbar() {
           {navlinks.map((item) => (
             <li key={item.id}>
               <Link
-                className="text-sm text-dark-grey leading-4 tracking-[2px] uppercase "
+                className="text-sm text-dark-grey leading-4 tracking-[2px] uppercase  hover:underline"
                 href={item.path}
               >
                 {item.title}
