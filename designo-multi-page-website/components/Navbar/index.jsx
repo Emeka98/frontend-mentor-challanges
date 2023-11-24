@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/Navbar/Images/logo-dark.png";
 import { useClickAway } from "@uidotdev/usehooks";
-import HamburgerIcon from "@/components/HamburgerIcon";
+import HamburgerIcon from "@/components/Navbar/HamburgerIcon";
 import clsx from "clsx";
 import { navlinks } from "./constant";
 
@@ -23,7 +23,7 @@ function Navbar() {
   };
 
   return (
-    <header className="w-full h-24 flex justify-between items-center px-6 relative bg-white  ">
+    <header className="w-full h-24 flex justify-between items-center px-6 md:px-0 relative bg-white  ">
       {/* Logo */}
       <Link className="" href={"/"}>
         {/* Image */}

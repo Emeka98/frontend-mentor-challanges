@@ -1,7 +1,12 @@
 import React from "react";
+import HomeHero from "@/components/HomeHero";
 
 function HomeContainer() {
-  return <div></div>;
+  return (
+    <div>
+      <HomeHero />
+    </div>
+  );
 }
 
 export default HomeContainer;
