@@ -29,7 +29,7 @@ const cards = [
 
 function LinksContainer() {
   return (
-    <section className="mt-[120px] w-full ">
+    <section className="mt-[120px] w-full px-6 md:px-0 ">
       <div className="grid grid-cols-1 grid-rows-1 lg:grid-cols-2 lg:grid-rows-2 gap-6  ">
         {cards.map((card, i) => (
           <div key={i} className={clsx("w-full h-[250px] relative cursor-pointer " , { "  lg:row-span-2 lg:h-full " : i === 0  } , {"lg:col-start-2 " : i === 2} )}>
