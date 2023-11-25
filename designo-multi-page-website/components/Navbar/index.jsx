@@ -87,8 +87,8 @@ function Navbar() {
       <div
         className={clsx(
           "w-full h-screen opacity-50 bg-[#000]  inset-0 z-30  ",
-          { "fixed overflow-scroll": isActive },
-          { "hidden": !isActive }
+          { "fixed ": isActive },
+          { hidden: !isActive }
         )}
       ></div>
     </>

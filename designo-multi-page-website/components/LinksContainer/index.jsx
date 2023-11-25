@@ -2,46 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-// Images For Mobile
-import webMobileImg from "./Images/mobile/image-web-design.jpg";
-import appMobileImg from "./Images/mobile/image-app-design.jpg";
-import graphicMobileImg from "./Images/mobile/image-graphic-design.jpg";
-// Images For Tablet
-import webTabletImg from "./Images/tablet/image-web-design.jpg";
-import appTabletImg from "./Images/tablet/image-app-design.jpg";
-import graphicTabletImg from "./Images/tablet/image-graphic-design.jpg";
-// Images For Desktop
-import webDesktopImg from "./Images/desktop/image-web-design-large.jpg";
-import appDesktopImg from "./Images/desktop/image-app-design.jpg";
-import graphicDesktopImg from "./Images/desktop/image-graphic-design.jpg";
-const cards = [
-  {
-    id: 0,
-    title: "web design",
-    path: "/web-design",
-    mobileImage: webMobileImg,
-    tabletImage: webTabletImg,
-    desktopImage: webDesktopImg,
-  },
-  {
-    id: 1,
-    title: "app design",
-    path: "/app-design",
-    mobileImage: appMobileImg,
-    tabletImage: appTabletImg,
-    desktopImage: appDesktopImg,
-  },
-  // {
-  //   id: 2,
-  //   title: "graphic design",
-  //   path: "/graphic-design",
-  //   mobileImage: graphicMobileImg,
-  //   tabletImage: graphicTabletImg,
-  //   desktopImage: graphicDesktopImg,
-  // },
-];
 
-function LinksContainer() {
+function LinksContainer({ cards }) {
   return (
     <section className="mt-[120px] w-full px-6 md:px-0 ">
       <div
@@ -51,7 +13,7 @@ function LinksContainer() {
           { "lg:grid-cols-2 lg:gap-x-4 lg:gap-y-0": cards?.length === 2 }
         )}
       >
-        {cards.map((card, i) => (
+        {cards?.map((card, i) => (
           <div
             key={i}
             className={clsx(
