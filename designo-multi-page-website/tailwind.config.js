@@ -12,7 +12,9 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          "circle" : 'url(/bg-pattern-hero-home.svg)'
+        circle: "url(/bg-pattern-hero-home.svg)",
+        "mobile-circle": "url(/bg-pattern-design-pages-intro-mobile.svg)",
+        "desktop-circle": "url(/bg-pattern-call-to-action.svg)",
       },
       colors: {
         peach: "#E7816B",
