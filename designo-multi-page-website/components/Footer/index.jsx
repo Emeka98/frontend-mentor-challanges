@@ -9,7 +9,7 @@ function Footer() {
     <footer className="bg-black w-full mt-[300px] flex flex-col  px-6 relative">
       <TouchCompenent />
       <div className="pt-[253px] container mx-auto flex flex-col gap-10 items-center text-center  ">
-        <div className="w-full flex flex-col md:flex-row md:justify-between items-center gap-8 md:border-b-[1px] md:pb-[42px] md:border-[#ffffff1a]">
+        <div className="w-full flex flex-col md:flex-row md:justify-between items-center gap-8 md:border-b-[1px]  md:border-[#ffffff1a]">
           <Link href={"/"}>
             <Image width={202} height={27} src={Logo} alt="Logo Image" />
           </Link>
@@ -36,7 +36,7 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="w-full h-full flex flex-col gap-10 md:flex-row md:text-start  ">
+        <div className="w-full h-full flex flex-col items-center gap-10 md:flex-row md:text-start md:pb-20  ">
           <address className="text-white opacity-50 text-base leading-6 ">
             <span className="font-bold"> Designo Central Office</span>
             <br />
@@ -51,7 +51,7 @@ function Footer() {
             <a href="mailto:contact@designo.co">contact@designo.co</a>.
           </address>
           {/* Social Links */}
-          <div className="mb-[72px] h-full  md:ml-auto flex  ">
+          <div className="mb-[72px] h-full  md:ml-auto   ">
             <SocialLinks />
           </div>
         </div>
