@@ -2,9 +2,9 @@ import React from "react";
 import Button from "@/components/Button";
 function TouchCompenent() {
   return (
-    <div className="bg-peach   absolute -top-1/4 right-6 left-6   -translate-y-1/4  max-w-[1536px] mx-auto lg:text-start    h-[379px] text-white rounded-[15px] text-center bg-mobile-circle bg-center lg:bg-desktop-circle   ">
-      <div className="w-full h-full flex flex-col lg:flex-row lg:justify-start-start  items-center justify-center lg:px-[95px] ">
-        <div>
+    <div className="bg-peach   absolute -top-1/4 md:-top-1/2 right-6 left-6     max-w-[1536px] mx-auto lg:text-start    h-[379px] text-white rounded-[15px]  bg-mobile-circle bg-center lg:bg-desktop-circle   ">
+      <div className="w-full h-full flex flex-col lg:flex-row lg:justify-start   items-center justify-center px-6 lg:px-[95px]  ">
+        <div className="w-full flex flex-col items-center text-center lg:items-start lg:text-start">
           <h3 className="text-[32px] md:text-[40px] md:w-[11ch]    font-medium leading-9 mb-1.5">
             Let’s talk about your project
           </h3>
