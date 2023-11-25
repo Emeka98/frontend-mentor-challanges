@@ -14,8 +14,9 @@ function LinksContainer({ cards }) {
         )}
       >
         {cards?.map((card, i) => (
-          <div
+          <Link
             key={i}
+            href={card.path}
             className={clsx(
               "w-full h-[250px] relative cursor-pointer    ",
               { "  lg:row-span-2 lg:h-full ": i === 0 },
@@ -50,7 +51,7 @@ function LinksContainer({ cards }) {
               <h3 className="text-[28px] md:text-[40px] md:tracking-[2px] md:leading-[48px] font-medium leading-9 tracking-[1.4px] text-center uppercase mb-3">
                 {card.title}
               </h3>
-              <Link
+              <h4
                 className="text-[15px] w-[197px] font-medium  leading-normal uppercase tracking-[4px] inline-flex items-center gap-4 text-center "
                 href={card.path}
               >
@@ -68,9 +69,9 @@ function LinksContainer({ cards }) {
                     strokeWidth="2"
                   />
                 </svg>
-              </Link>
+              </h4>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -6,6 +6,17 @@ import expressImg from "./Images/image-express.jpg";
 import photonImg from "./Images/image-photon.jpg";
 import transferImg from "./Images/image-transfer.jpg";
 
+import appMobileImg from "./Images/mobile/image-app-design.jpg";
+import graphicMobileImg from "./Images/mobile/image-graphic-design.jpg";
+// Images For Tablet
+
+import appTabletImg from "./Images/tablet/image-app-design.jpg";
+import graphicTabletImg from "./Images/tablet/image-graphic-design.jpg";
+// Images For Desktop
+
+import appDesktopImg from "./Images/desktop/image-app-design.jpg";
+import graphicDesktopImg from "./Images/desktop/image-graphic-design.jpg";
+
 export const heroInfo = {
   title: "Web Design",
   content:
@@ -53,5 +64,24 @@ export const webDesignCards = [
     description:
       "Get expert training in coding, data, design, and digital marketing",
     image: campImg,
+  },
+];
+
+export const cards = [
+  {
+    id: 0,
+    title: "app design",
+    path: "/app-design",
+    mobileImage: appMobileImg,
+    tabletImage: appTabletImg,
+    desktopImage: appDesktopImg,
+  },
+  {
+    id: 1,
+    title: "graphic design",
+    path: "/graphic-design",
+    mobileImage: graphicMobileImg,
+    tabletImage: graphicTabletImg,
+    desktopImage: graphicDesktopImg,
   },
 ];
