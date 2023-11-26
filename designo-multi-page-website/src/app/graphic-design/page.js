@@ -3,7 +3,7 @@ import GraphicDesignContainer from "@/containers/GraphicDesignContainer";
 
 export const metadata = {
   title: "Graphic Design",
-  description: "Designo Graphic Design Page Content",
+  description: "Graphic Design Page Content",
 };
 
 function GraphicDesign() {
