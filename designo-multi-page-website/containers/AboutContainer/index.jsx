@@ -1,30 +1,13 @@
-"use client";
 import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-
-const mapsInfo = [
-  {
-    id: 0,
-  },
-];
+import dynamic from "next/dynamic";
+const Maps = dynamic(() => import("@/components/Maps"), { ssr: false });
 
 function AboutContainer() {
   return (
     <div className="flex flex-col lg:flex-row lg:gap-[30px]">
       {/* Map */}
       <div className="w-full h-[320px] lg:max-w-[350px] ">
-        <MapContainer
-          className="w-full h-full md:rounded-[15px]"
-          center={[43.662299, -79.314497]}
-          zoom={15}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
+        <Maps />
       </div>
       <div className="w-full h-[320px] bg-[#fdf3f0] bg-mobile-circle bg-center md:rounded-[15px]">
         <div className="w-full h-full flex flex-col items-center justify-center md:items-start gap-6 md:px-[75px]">
