@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <>
-      <header className="w-full h-24 flex justify-between items-center px-6 md:px-0 relative bg-white z-40  ">
+      <header className="w-full h-24 flex justify-between items-center px-6 md:px-0 relative bg-white z-40 lg:mt-5  ">
         {/* Logo */}
         <Link className="" href={"/"}>
           {/* Image */}
