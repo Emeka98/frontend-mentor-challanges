@@ -4,14 +4,14 @@ import faceitImg from "./images/image-faceit.jpg";
 import todoImg from "./images/image-todo.jpg";
 import loopImg from "./images/image-loopstudios.jpg";
 // Images For Mobile
-import webMobileImg from "./Images/mobile/image-web-design.jpg";
-import graphicMobileImg from "./Images/mobile/image-graphic-design.jpg";
+import webMobileImg from "./images/mobile/image-web-design.jpg";
+import graphicMobileImg from "./images/mobile/image-graphic-design.jpg";
 // Images For Tablet
-import webTabletImg from "./Images/tablet/image-web-design.jpg";
-import graphicTabletImg from "./Images/tablet/image-graphic-design.jpg";
+import webTabletImg from "./images/tablet/image-web-design.jpg";
+import graphicTabletImg from "./images/tablet/image-graphic-design.jpg";
 // Images For Desktop
-import webDesktopImg from "./Images/desktop/image-web-design-large.jpg";
-import graphicDesktopImg from "./Images/desktop/image-graphic-design.jpg";
+import webDesktopImg from "./images/desktop/image-web-design-large.jpg";
+import graphicDesktopImg from "./images/desktop/image-graphic-design.jpg";
 
 export const heroInfo = {
   title: "App Design",
