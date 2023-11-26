@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Cards({ cards }) {
   return (
-    <section className="flex flex-col gap-10 px-6 mt-24 lg:flex-row lg:flex-wrap lg:gap-[30px] justify-center lg:justify-center lg:px-0 ">
+    <section className="flex flex-col gap-10 px-6 mt-24 lg:flex-row lg:flex-wrap lg:gap-10 justify-center lg:justify-start lg:px-0 ">
       {cards?.map((card, i) => (
         <div
           key={card.id}
