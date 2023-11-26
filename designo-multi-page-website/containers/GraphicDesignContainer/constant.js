@@ -2,16 +2,16 @@ import timBrownImg from "./images/image-change.jpg";
 import waterImg from "./images/image-boxed-water.jpg";
 import scienceImg from "./images/image-science.jpg";
 // Images For Mobile
-import webMobileImg from "./Images/mobile/image-web-design.jpg";
-import appMobileImg from "./Images/mobile/image-app-design.jpg";
+import webMobileImg from "./images/mobile/image-web-design.jpg";
+import appMobileImg from "./images/mobile/image-app-design.jpg";
 
 // Images For Tablet
-import webTabletImg from "./Images/tablet/image-web-design.jpg";
-import appTabletImg from "./Images/tablet/image-app-design.jpg";
+import webTabletImg from "./images/tablet/image-web-design.jpg";
+import appTabletImg from "./images/tablet/image-app-design.jpg";
 
 // Images For Desktop
-import webDesktopImg from "./Images/desktop/image-web-design-large.jpg";
-import appDesktopImg from "./Images/desktop/image-app-design.jpg";
+import webDesktopImg from "./images/desktop/image-web-design-large.jpg";
+import appDesktopImg from "./images/desktop/image-app-design.jpg";
 
 export const heroInfo = {
   title: "Graphic Design",
