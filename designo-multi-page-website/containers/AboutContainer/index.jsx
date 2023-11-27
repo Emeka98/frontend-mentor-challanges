@@ -1,6 +1,7 @@
 import DescriptionBox from "@/components/DescriptionBox";
 import React from "react";
 import { aboutusInfo, talentInfo } from "./constant";
+import LinksCard from "@/components/LinksCard";
 
 function AboutContainer() {
   return (
@@ -12,6 +13,7 @@ function AboutContainer() {
         onLeft={false}
         theme={"secondary"}
       />
+      <LinksCard />
     </div>
   );
 }

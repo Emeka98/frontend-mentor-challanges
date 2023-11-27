@@ -53,7 +53,7 @@ function DescriptionBox({ item, onLeft, className, theme }) {
           >
             {item.title}
           </h4>
-          <p className="text-center text-[15px] md:text-[16px] font-normal leading-6  ">
+          <p className="text-center text-[15px] md:text-[16px] font-normal leading-6 lg:text-start  ">
             {item.description}
           </p>
         </div>
