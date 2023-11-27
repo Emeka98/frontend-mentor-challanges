@@ -1,6 +1,6 @@
 import DescriptionBox from "@/components/DescriptionBox";
 import React from "react";
-import { aboutusInfo, talentInfo } from "./constant";
+import { aboutusInfo, talentInfo, dealInfo } from "./constant";
 import LinksCard from "@/components/LinksCard";
 
 function AboutContainer() {
@@ -14,6 +14,12 @@ function AboutContainer() {
         theme={"secondary"}
       />
       <LinksCard />
+      <DescriptionBox
+        item={dealInfo}
+        className={"mt-20  md:mt-[120px] lg:mt-[160px]"}
+        onLeft={true}
+        theme={"secondary"}
+      />
     </div>
   );
 }

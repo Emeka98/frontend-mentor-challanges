@@ -1,10 +1,15 @@
+// About Images
 import mobileAboutImg from "./images/mobile/image-about-hero.jpg";
 import tabletAboutImg from "./images/tablet/image-about-hero.jpg";
 import desktopAboutImg from "./images/desktop/image-about-hero.jpg";
-// World Class Talent Img
+// World Class Talent Images
 import mobileTalentImg from "./images/mobile/image-world-class-talent.jpg";
 import tabletTalentImg from "./images/tablet/image-world-class-talent.jpg";
 import desktopTalentImg from "./images/desktop/image-world-class-talent.jpg";
+// The real Deal Images
+import mobileDealImg from "./images/mobile/image-real-deal.jpg";
+import tabletDealImg from "./images/tablet/image-real-deal.jpg";
+import desktopDealImg from "./images/desktop/image-real-deal.jpg";
 
 export const aboutusInfo = {
   title: "About Us",
@@ -22,4 +27,13 @@ export const talentInfo = {
   mobileImg: mobileTalentImg,
   tabletImg: tabletTalentImg,
   desktopImg: desktopTalentImg,
+};
+
+export const dealInfo = {
+  title: "The real deal",
+  description:
+    "As strategic partners in our clients’ businesses, we are ready to take on any challenge as our own. Solving real problems require empathy and collaboration, and we strive to bring a fresh perspective to every opportunity. We make design and technology more accessible and give you tools to measure success.We are visual storytellers in appealing and captivating ways. By combining business and marketing strategies, we inspire audiences to take action and drive real results.",
+  mobileImg: mobileDealImg,
+  tabletImg: tabletDealImg,
+  desktopImg: desktopDealImg,
 };
