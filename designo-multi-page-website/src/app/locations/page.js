@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from "react";
+import LocationsContainer from "@/containers/LocationsContainer";
 export const metadata = {
   title: "Locations",
   description: "Designo Locations Page Content",
@@ -8,9 +8,9 @@ export const metadata = {
 function Locations() {
   return (
     <div>
-      Locations Page
+      <LocationsContainer />
     </div>
-  )
+  );
 }
 
-export default Locations
+export default Locations;
