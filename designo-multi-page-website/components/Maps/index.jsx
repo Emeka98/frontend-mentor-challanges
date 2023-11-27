@@ -10,6 +10,7 @@ function Maps({ lat, long }) {
       center={[lat, long]}
       zoom={15}
       scrollWheelZoom={false}
+      zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
