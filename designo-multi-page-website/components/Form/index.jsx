@@ -1,31 +1,48 @@
+"use client";
 import clsx from "clsx";
 import React from "react";
-import Button from "../Button";
+import { useFormik } from "formik";
 
 const formElements = [
   {
     id: 0,
     placeholder: "Name",
     type: "text",
+    name: "name",
   },
   {
     id: 1,
     placeholder: "Email Address",
     type: "email",
+    name: "email",
   },
   {
     id: 2,
     placeholder: "Phone",
     type: "phone",
+    name: "phone",
   },
   {
     id: 3,
     placeholder: "Your Message",
     type: "textarea",
+    name: "message",
   },
 ];
 
 function Form() {
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <div className="w-full bg-peach px-6 flex flex-col lg:flex-row lg:items-center gap-12 md:rounded-[15px] text-white bg-mobile-circle md:bg-desktop-circle ">
       <div className="w-full h-full flex flex-col gap-6 justify-center lg:items-start items-center pt-16 lg:pt-0 lg:flex-1 ">
@@ -39,7 +56,11 @@ function Form() {
           drop us a line.
         </p>
       </div>
-      <form className="pb-16 lg:pt-[55px] flex flex-col items-center lg:flex-1">
+      <form
+        autoComplete="off"
+        onSubmit={formik.handleSubmit}
+        className="pb-16 lg:pt-[55px] flex flex-col items-center lg:flex-1"
+      >
         {formElements.map((item, i) => (
           <div
             key={item.id}
@@ -49,14 +70,20 @@ function Form() {
           >
             {item.type === "textarea" ? (
               <textarea
-                className="w-full outline-none bg-transparent placeholder:text-[#ffffff80] px-3 pt-[25px] "
+                className="w-full outline-none bg-transparent placeholder:text-[#ffffff80] ring-[#E7816B] focus:ring-[#E7816B] px-3 pt-[25px]   "
                 placeholder={item.placeholder}
+                value={formik.values.type}
+                onChange={formik.handleChange}
+                name={item.name}
               />
             ) : (
               <input
-                className="w-full h-full outline-none bg-transparent placeholder:text-[#ffffff80] px-3 "
+                className="w-full h-full outline-none bg-transparent ring-[#E7816B] focus:ring-[#E7816B] placeholder:text-[#ffffff80] px-3 "
                 type={item.type}
                 placeholder={item.placeholder}
+                value={formik.values.type}
+                onChange={formik.handleChange}
+                name={item.name}
               />
             )}
           </div>
