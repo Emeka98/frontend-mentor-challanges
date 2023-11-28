@@ -1,7 +1,8 @@
 "use client";
-import clsx from "clsx";
 import React from "react";
 import { useFormik } from "formik";
+import validationSchema from "./validationSchema";
+import clsx from "clsx";
 
 const formElements = [
   {
@@ -38,8 +39,10 @@ function Form() {
       phone: "",
       message: "",
     },
+    validationSchema: validationSchema,
+
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      formik.resetForm(initialValues);
     },
   });
 
@@ -64,27 +67,78 @@ function Form() {
         {formElements.map((item, i) => (
           <div
             key={item.id}
-            className={clsx("h-16 border-b border-solid border-white w-full", {
-              "h-[127px] md:h-[102px]": item.type === "textarea",
-            })}
+            className={clsx(
+              "h-16 border-b border-solid border-white w-full relative",
+              {
+                "h-[127px] md:h-[102px]": item.type === "textarea",
+              }
+            )}
           >
             {item.type === "textarea" ? (
-              <textarea
-                className="w-full outline-none bg-transparent placeholder:text-[#ffffff80] ring-[#E7816B] focus:ring-[#E7816B] px-3 pt-[25px]   "
-                placeholder={item.placeholder}
-                value={formik.values.type}
-                onChange={formik.handleChange}
-                name={item.name}
-              />
+              <>
+                <textarea
+                  className="w-full outline-none bg-transparent placeholder:text-[#ffffff80] ring-[#E7816B] focus:ring-[#E7816B] px-3 pt-[25px]   "
+                  placeholder={item.placeholder}
+                  value={formik.values.type}
+                  onChange={formik.handleChange}
+                  name={item.name}
+                />
+                {formik.errors[item.name] && formik.touched[item.name] && (
+                  <div className="absolute top-1/2 -translate-y-1/2 right-0 flex gap-[9px] ">
+                    <p className="italic text-xs leading-7">
+                      {formik.errors[item.name]}
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <circle cx="10" cy="10" r="10" fill="white" />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M11 5H9V12H11V5ZM11 14H9V16H11V14Z"
+                        fill="#E7816B"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </>
             ) : (
-              <input
-                className="w-full h-full outline-none bg-transparent ring-[#E7816B] focus:ring-[#E7816B] placeholder:text-[#ffffff80] px-3 "
-                type={item.type}
-                placeholder={item.placeholder}
-                value={formik.values.type}
-                onChange={formik.handleChange}
-                name={item.name}
-              />
+              <>
+                <input
+                  className="w-full h-full outline-none bg-transparent ring-[#E7816B] focus:ring-[#E7816B] placeholder:text-[#ffffff80] px-3 "
+                  type={item.type}
+                  placeholder={item.placeholder}
+                  value={formik.values.type}
+                  onChange={formik.handleChange}
+                  name={item.name}
+                />
+                {formik.errors[item.name] && formik.touched[item.name] && (
+                  <div className="absolute top-1/2 -translate-y-1/2 right-0 flex gap-[9px] items-center ">
+                    <p className="italic text-xs leading-7">
+                      {formik.errors[item.name]}
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <circle cx="10" cy="10" r="10" fill="white" />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M11 5H9V12H11V5ZM11 14H9V16H11V14Z"
+                        fill="#E7816B"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </>
             )}
           </div>
         ))}
