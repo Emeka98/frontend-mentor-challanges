@@ -25,7 +25,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/faq-accordion-with-grid-BMJtkHz7ZI)
 - Live Site URL: [Add live site URL here](https://faq-accordion-jade.vercel.app/)
 
 ## My process
