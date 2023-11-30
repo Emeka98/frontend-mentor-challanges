@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${WORK_SANS.className} w-screen h-screen`}>
+      <body className={`${WORK_SANS.className} min-h-screen w-full `}>
         {children}
       </body>
     </html>

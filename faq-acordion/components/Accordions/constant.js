@@ -1,4 +1,4 @@
-export const ACCORDİONS = [
+export const ACCORDIONS_INFO = [
   {
     id: 0,
     title: "What is Frontend Mentor, and how will it help me?",
