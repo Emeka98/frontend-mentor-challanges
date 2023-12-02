@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import MainContent from "@/components/MainContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <MainContent />
     </>
   );
 }
