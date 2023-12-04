@@ -14,3 +14,9 @@ export type InputProps = {
   placeholder: string;
   type: string;
 };
+
+export type LinksTypes = {
+  id: number;
+  name: string;
+  path: string;
+};

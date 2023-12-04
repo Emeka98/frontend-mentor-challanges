@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import MainContent from "@/components/MainContent";
 import ContactPanel from "@/components/ContactPanel";
+import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <MainContent />
       <ContactPanel />
+      <Footer />
     </>
   );
 }
