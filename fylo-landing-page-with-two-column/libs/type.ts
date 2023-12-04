@@ -15,6 +15,7 @@ export type InputProps = {
   setEmail?: (value: string) => void | null;
   placeholder: string;
   type: string;
+  error?: string;
 };
 
 export type LinksTypes = {

@@ -4,13 +4,10 @@ import section1Img from "@/assets/icons/illustration-1.svg?url";
 import Input from "../Input";
 import Button from "../Button";
 import Image from "next/image";
+import { checkEmail } from "@/libs/utils";
 function SectionOne() {
   const [email, setEmail] = useState<string>("");
   const [errMessage, setErrMessage] = useState<string>("");
-  const checkEmail = (email: string) => {
-    let re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleClick = () => {
     if (!email) {
@@ -44,6 +41,7 @@ function SectionOne() {
             setEmail={setEmail}
             placeholder="Enter your email."
             type="email"
+            error={errMessage}
           />
           <Button onClick={handleClick} title={"Get Started"} />
           {errMessage && (
