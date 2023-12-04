@@ -11,6 +11,8 @@ export type ButtonProps = {
 };
 
 export type InputProps = {
+  email?: string;
+  setEmail?: (value: string) => void | null;
   placeholder: string;
   type: string;
 };

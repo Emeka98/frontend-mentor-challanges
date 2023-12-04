@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { InputProps } from "@/libs/type";
 function Input(props: InputProps) {
@@ -6,6 +7,8 @@ function Input(props: InputProps) {
       className="w-full max-w-[480px]  rounded border border-[#07043b] pt-[14px] pb-[12px] px-5"
       type={props.type}
       placeholder={props.placeholder}
+      value={props.email}
+      onChange={(e) => props.setEmail?.(e.target.value || "")}
     />
   );
 }
