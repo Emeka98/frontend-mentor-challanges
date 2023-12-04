@@ -9,7 +9,7 @@ import Link from "next/link";
 function Footer() {
   return (
     <footer className="p-10 bg-[#07043b] text-white ">
-      <div>
+      <div className="container mx-auto flex flex-col lg:flex-row lg:justify-between">
         <div>
           <FooterLogo />
           <div className="flex items-center  gap-4 mt-8 ">
@@ -18,13 +18,17 @@ function Footer() {
           </div>
           <div className="flex items-center  gap-4 mt-4 ">
             <MailImg />
-            <h6>example@fylo.com</h6>
+            <Link href={"mailto:example@fylo.com"}>example@fylo.com</Link>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 mt-8">
           {LINKS[0].map((link) => (
-            <Link key={link.id} href={link.path}>
+            <Link
+              key={link.id}
+              className="hover:text-[#6c9bff]"
+              href={link.path}
+            >
               {link.name}
             </Link>
           ))}
@@ -32,7 +36,11 @@ function Footer() {
 
         <div className="flex flex-col gap-4 mt-8">
           {LINKS[1].map((link) => (
-            <Link key={link.id} href={link.path}>
+            <Link
+              className="hover:text-[#6c9bff]"
+              key={link.id}
+              href={link.path}
+            >
               {link.name}
             </Link>
           ))}
